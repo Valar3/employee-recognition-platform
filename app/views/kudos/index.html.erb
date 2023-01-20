@@ -1,0 +1,24 @@
+<h1>Kudos listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Given by</th>
+      <th>Received by</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kudos.each do |kudo| %>
+      <tr>
+        <td><%= kudo.Title %></td>
+        <td><%= kudo.Content %></td>
+        <td><%= kudo.giver&.email %></td>
+        <td>by <%= kudo.receiver&.email %></td>
+    <% end %>
+  </tbody>
+</table>
+<p>
+    <%=button_to "Create New Kudo", new_kudo_path , method: :get%>
+</P>

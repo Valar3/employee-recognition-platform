@@ -1,24 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
     <a class="navbar-brand" href="/">ERP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+    </button>      <ul class="navbar-nav">
       <% if employee_signed_in? %>
          <li class="nav-item">
-            <%= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'nav-link' %>           </li>
+            <%= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'nav-link' %>
           </li>
       <%else%>
          <li class="nav-item">
-            <%= link_to "Sign up", new_employee_registration_path, method: :get, class: 'nav-link' %>           </li>
+            <%= link_to "Sign up", new_employee_registration_path, method: :get, class: 'nav-link' %>
           </li>
            <li class="nav-item">
-            <%= link_to "Sign in", new_employee_session_path, method: :get, class: 'nav-link' %>           </li>
+            <%= link_to "Sign in", new_employee_session_path, method: :get, class: 'nav-link' %>
           </li>
       <%end%>
       </ul>
-    </div>
-  </div>
 </nav>
