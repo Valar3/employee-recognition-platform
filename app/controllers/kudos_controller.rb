@@ -8,17 +8,19 @@ class KudosController < ApplicationController
   end
 
   def create
-    @kudo.empolyee = current_employee
-      if @kudo.save
-        flash[:notice] = "Kudo was created successfully"
-        redirect_to kudos
-      else
-        render 'new'
-      end
+    @kudo = Kudo.new(kudo_params)
+    @kudo.giver_id = current_employee.id
+    if @kudo.save
+      flash[:notice] = 'Kudo was created successfully'
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
-      private
 
-      def kudo_params
-        params.require(:kudo).permit(:Title, :Content, :giver_id, :receiver_id )
-      end
+  private
+
+  def kudo_params
+    params.require(:kudo).permit(:Title, :Content, :giver_id, :receiver_id)
+  end
 end
