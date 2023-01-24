@@ -6,6 +6,7 @@
       <th>Content</th>
       <th>Given by</th>
       <th>Received by</th>
+      <th>Edit or delete Kudo</th>
     </tr>
   </thead>
 
@@ -15,7 +16,11 @@
         <td><%= kudo.Title %></td>
         <td><%= kudo.Content %></td>
         <td><%= kudo.giver&.email %></td>
-        <td>by <%= kudo.receiver&.email %></td>
+        <td><%= kudo.receiver&.email %></td>
+        <% if employee_signed_in? && @kudo.employee == current.employee%>
+          <%=button_to 'Edit Kudo', edit_kudo_path(kudo), method: :get%>
+          <%=button_to 'Delete Kudo', destroy_kudo_path(kudo), method: :destroy_employee_session_path%>
+        <%end%>
     <% end %>
   </tbody>
 </table>
