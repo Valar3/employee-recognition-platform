@@ -1,15 +1,14 @@
 class KudosController < ApplicationController
-
-  def show
-    @kudo = Kudo.find(params[:id])
-  end
-
   def index
     @kudos = Kudo.all
   end
 
   def new
     @kudo = Kudo.new
+  end
+
+  def edit
+    @kudo = Kudo.find(params[:id])
   end
 
   def create
@@ -34,13 +33,14 @@ class KudosController < ApplicationController
   end
 
   def destroy
-      @kudo = Kudo.find(params[:id])
-      @kudo.destroy
-      redirect_to root_path
+    @kudo = Kudo.find(params[:id])
+    @kudo.destroy
+    redirect_to root_path
   end
+
   private
 
   def kudo_params
-    params.require(:kudo).permit(:Title, :Content, :giver_id, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
   end
 end
