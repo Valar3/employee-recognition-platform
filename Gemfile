@@ -11,6 +11,7 @@ gem 'byebug-dap', '~> 0.1.4'
 gem 'devise'
 gem 'faker'
 gem 'pry'
+gem "factory_bot_rails"
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
