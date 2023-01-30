@@ -30,8 +30,10 @@ group :development, :test do
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
-  # Tests
   gem 'rspec-rails', '~> 5.0.0'
+  # Tests
+  gem 'capybara'
+  gem 'webdrivers', '~> 4.0', require: false
 end
 
 group :development do
