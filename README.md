@@ -1,11 +1,3 @@
 # Employee Recognition Platfrom
 
-### Setup
-```
-bin/setup
-```
-
-### How to start the app
-```
-rails server
-```
+Login is : 'balonw@gmail.com', and password is 'password'
