@@ -11,8 +11,8 @@ module Capybara
       app reuse_server threadsafe server default_driver javascript_driver use_html5_parsing allow_gumbo
     ].freeze
 
-    attr_accessor :app, :use_html5_parsing
-    attr_reader :reuse_server, :threadsafe, :session_options # rubocop:disable Style/BisectedAttrAccessor
+    attr_accessor :app, :use_html5_parsing, :reuse_server
+    attr_reader :threadsafe, :session_options
     attr_writer :default_driver, :javascript_driver
 
     SessionConfig::OPTIONS.each do |method|
@@ -23,8 +23,6 @@ module Capybara
       @session_options = Capybara::SessionConfig.new
       @javascript_driver = nil
     end
-
-    attr_writer :reuse_server # rubocop:disable Style/BisectedAttrAccessor
 
     def threadsafe=(bool)
       if (bool != threadsafe) && Session.instance_created?
@@ -59,12 +57,12 @@ module Capybara
     def server=(name)
       name, options = *name if name.is_a? Array
       @server = if name.respond_to? :call
-        name
-      elsif options
-        proc { |app, port, host| Capybara.servers[name.to_sym].call(app, port, host, **options) }
-      else
-        Capybara.servers[name.to_sym]
-      end
+                  name
+                elsif options
+                  proc { |app, port, host| Capybara.servers[name.to_sym].call(app, port, host, **options) }
+                else
+                  Capybara.servers[name.to_sym]
+                end
     end
 
     ##
@@ -86,7 +84,8 @@ module Capybara
     def deprecate(method, alternate_method, once: false)
       @deprecation_notified ||= {}
       unless once && @deprecation_notified[method]
-        Capybara::Helpers.warn "DEPRECATED: ##{method} is deprecated, please use ##{alternate_method} instead: #{Capybara::Helpers.filter_backtrace(caller)}"
+        Capybara::Helpers.warn "DEPRECATED: ##{method} is deprecated, please use ##{alternate_method}
+        instead: #{Capybara::Helpers.filter_backtrace(caller)}"
       end
       @deprecation_notified[method] = true
     end

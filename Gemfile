@@ -9,9 +9,9 @@ ruby '3.1.0'
 gem 'byebug'
 gem 'byebug-dap', '~> 0.1.4'
 gem 'devise'
+gem 'factory_bot_rails'
 gem 'faker'
 gem 'pry'
-gem "factory_bot_rails"
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -27,10 +27,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Debugging tool
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
-  gem 'rspec-rails', '~> 5.0.0'
   # Tests
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false

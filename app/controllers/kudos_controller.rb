@@ -35,6 +35,9 @@ class KudosController < ApplicationController
   def destroy
     @kudo = Kudo.find(params[:id])
     @kudo.destroy
+    return unless @kudo.destroy
+
+    flash[:notice] = 'Kudo was deleted successfully'
     redirect_to root_path
   end
 

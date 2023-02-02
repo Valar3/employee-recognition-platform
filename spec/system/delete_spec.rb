@@ -9,12 +9,10 @@ RSpec.describe 'Kudo management', type: :system do
     driven_by(:selenium_chrome_headless)
   end
 
-  it 'enables me to edit kudos' do
+  it 'enables me to delete kudos' do
     visit root_path
-    click_button 'Edit'
-    fill_in 'Title', with: 'A new title'
-    fill_in 'Content', with: 'A new content'
-    click_button 'Update Kudo'
-    expect(page).to have_text('Kudo was edited successfully')
+    click_button 'Delete'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_text('Kudo was deleted successfully')
   end
 end
