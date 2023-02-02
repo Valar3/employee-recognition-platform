@@ -15,12 +15,6 @@ RSpec.configure do |config|
         uncommitted transaction data setup over the spec's database connection.
       MSG
     end
-
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before do
-    DatabaseCleaner.strategy = :transaction
   end
 
   config.before(:each, type: :feature) do
@@ -32,15 +26,7 @@ RSpec.configure do |config|
       # Driver is probably for an external browser with an app
       # under test that does *not* share a database connection with the
       # specs, so use truncation strategy.
-      DatabaseCleaner.strategy = :truncation
+      #  DatabaseCleaner.strategy = :truncation
     end
-  end
-
-  config.before do
-    DatabaseCleaner.start
-  end
-
-  config.append_after do
-    DatabaseCleaner.clean
   end
 end

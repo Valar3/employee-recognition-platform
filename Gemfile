@@ -6,10 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'byebug'
-gem 'byebug-dap', '~> 0.1.4'
+
 gem 'devise'
-gem 'factory_bot_rails'
 gem 'faker'
 gem 'pry'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -26,11 +24,15 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Debugging tool
+  gem 'byebug'
+  gem 'byebug-dap', '~> 0.1.4'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
+
+  gem 'factory_bot_rails'
   # Tests
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
