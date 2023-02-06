@@ -31,14 +31,13 @@ group :development, :test do
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
-
+  gem 'pg', '~> 1.1'
   gem 'factory_bot_rails'
   # Tests
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
 end
 group :production do
-  gem 'pg', '~> 1.1'
 end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

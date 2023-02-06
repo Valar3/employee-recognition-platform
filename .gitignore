@@ -6,7 +6,8 @@
 /.vscode
 # Ignore bundler config.
 /.bundle
-
+/"/db/?"
+"\db\/004"
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
