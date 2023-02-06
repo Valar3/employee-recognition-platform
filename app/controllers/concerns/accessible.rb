@@ -5,6 +5,7 @@ module Accessible
   end
 
   protected
+
   def check_employee
     if current_admin
       flash.clear

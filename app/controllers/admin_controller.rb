@@ -1,4 +1,3 @@
 class AdminController < ApplicationController
-     render layout: 'admin'
+  render layout: 'admin'
 end
-
