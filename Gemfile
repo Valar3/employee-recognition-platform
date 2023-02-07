@@ -12,7 +12,7 @@ gem 'faker'
 gem 'pry'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
-
+gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -36,9 +36,6 @@ group :development, :test do
   # Tests
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
-end
-group :production do
-  gem 'pg', '~> 1.1'
 end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
