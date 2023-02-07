@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "rake",
+			"task": "app:template",
+			"problemMatcher": [
+				"$gulp-tsc"
+			],
+			"label": "rake: app:template"
+		}
+	]
+}
