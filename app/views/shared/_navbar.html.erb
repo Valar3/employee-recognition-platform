@@ -6,6 +6,7 @@
          <li class="nav-item">
             <%= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'nav-link' %>
           </li>
+
       <%else%>
          <li class="nav-item">
             <%= link_to "Sign up", new_employee_registration_path, method: :get, class: 'nav-link' %>

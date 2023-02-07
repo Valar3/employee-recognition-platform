@@ -6,16 +6,21 @@
       <th>Content</th>
       <th>Given by</th>
       <th>Received by</th>
+      <th colspan ="2">Edit or delete</th>
     </tr>
   </thead>
 
   <tbody>
     <% @kudos.each do |kudo| %>
       <tr>
-        <td><%= kudo.Title %></td>
-        <td><%= kudo.Content %></td>
+        <td><%= kudo.title %></td>
+        <td><%= kudo.content %></td>
         <td><%= kudo.giver&.email %></td>
-        <td>by <%= kudo.receiver&.email %></td>
+        <td><%= kudo.receiver&.email %></td>
+        <% if employee_signed_in? && kudo.giver == current_employee%>
+          <td><%=button_to 'Edit Kudo', edit_kudo_path(kudo), method: :get %></td>
+          <td><%=button_to 'Delete Kudo',   kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
+        <%end%>
     <% end %>
   </tbody>
 </table>
