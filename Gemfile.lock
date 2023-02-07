@@ -60,6 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
@@ -70,6 +72,15 @@ GEM
     byebug-dap (0.1.4)
       byebug (~> 11.1)
       ruby-dap (~> 0.1.2)
+    capybara (3.38.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -82,6 +93,11 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
@@ -101,6 +117,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
@@ -127,6 +144,7 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -209,6 +227,7 @@ GEM
       rubocop (~> 1.19)
     ruby-dap (0.1.3)
     ruby-progressbar (1.11.0)
+    rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.1.0-x86_64-linux)
@@ -219,6 +238,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    selenium-webdriver (4.8.0)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     semantic_range (3.0.0)
     spring (4.1.0)
     sprockets (4.2.0)
@@ -241,14 +264,21 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdrivers (4.7.0)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (> 3.141, < 5.0)
     webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -258,7 +288,9 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   byebug-dap (~> 0.1.4)
+  capybara
   devise
+  factory_bot_rails
   faker
   listen (~> 3.3)
   pg (~> 1.1)
@@ -275,6 +307,7 @@ DEPENDENCIES
   spring
   tzinfo-data
   web-console (>= 4.1.0)
+  webdrivers (~> 4.0)
   webpacker (~> 5.0)
 
 RUBY VERSION
