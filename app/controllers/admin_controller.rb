@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
-     render layout: 'admin'
+  before_action :authenticate_admin!
+  render layout: 'admin'
 end
 
