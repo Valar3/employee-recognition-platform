@@ -10,15 +10,9 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <a class="navbar-brand" href="/">ERP</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    </button>
-  <%= render 'shared/navbar'%>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-</nav>
-    <%= yield %>
+  <body><ul>
+<p><li>  <%=button_to 'Employee Panel', href="/employees/sign_in" %></p></li>
+<p><li>  <%=button_to 'Admin Panel', href="/admins/sign_in"%></p></li>
+</ul>
   </body>
 </html>

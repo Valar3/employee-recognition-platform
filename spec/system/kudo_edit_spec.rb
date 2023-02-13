@@ -5,7 +5,7 @@ RSpec.describe 'Kudo management', type: :system do
   let!(:kudo) { create(:kudo, giver: employee) }
 
   before do
-    login_as(employee)
+    login_as(employee, scope: :employee)
     driven_by(:selenium_chrome_headless)
   end
 

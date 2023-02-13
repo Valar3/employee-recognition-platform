@@ -1,4 +1,4 @@
-class KudosController < ApplicationController
+class KudosController < EmployeesController
   def index
     @kudos = Kudo.all
   end

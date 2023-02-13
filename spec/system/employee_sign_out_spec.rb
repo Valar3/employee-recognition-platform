@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Signing in and out process', type: :system do
   before do
     employee = create(:employee)
-    login_as(employee)
+    login_as(employee, scope: :employee)
     driven_by(:selenium_chrome_headless)
   end
 
