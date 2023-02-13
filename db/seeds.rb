@@ -22,3 +22,7 @@ kudos = Kudo.create!([{
   giver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'),
   receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password')
 }])
+admins = Admin.create!([{
+  email: Faker::Internet.email(domain: 'gmail.com'),
+  password: 'password'
+  }])

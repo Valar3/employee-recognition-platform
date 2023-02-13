@@ -26,13 +26,13 @@ group :development, :test do
   # Debugging tool
   gem 'byebug'
   gem 'byebug-dap', '~> 0.1.4'
+  gem 'factory_bot_rails'
+  gem 'pg', '~> 1.1'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
-  gem 'pg', '~> 1.1'
-  gem 'factory_bot_rails'
   # Tests
   gem 'capybara'
   gem 'webdrivers', '~> 4.0', require: false
