@@ -5,15 +5,12 @@ RSpec.describe 'Kudo management', type: :system do
   let!(:kudo) { create(:kudo, giver: employee) }
 
   before do
+    login_as(employee, scope: :employee)
     driven_by(:selenium_chrome_headless)
   end
 
   it 'enables me to edit kudos' do
-    visit '/employees/sign_in'
-    fill_in 'Email', with: employee.email
-    fill_in 'Password', with: 'password'
-    click_button 'Log in'
-    visit 'employee'
+    visit root_path
     click_button 'Edit'
     fill_in 'Title', with: 'A new title'
     fill_in 'Content', with: 'A new content'
