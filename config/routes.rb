@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :employees, path: 'employees'
   resources :kudos
-    get '/admin' => "pages#dashboard", :as => :admin_root
+  namespace :admin do
+    resources :kudos
+  end
+  resources :pages
+  get '/admin' => "pages#dashboard", :as => :admin_root
   root 'kudos#index'
 end
