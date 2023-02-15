@@ -17,7 +17,7 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver&.email %></td>
         <td><%= kudo.receiver&.email %></td>
-          <td><%=button_to 'Delete Kudo',admin_kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
+          <td><%=button_to 'Delete Kudo',admins_kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
     <% end %>
   </tbody>
 </table>

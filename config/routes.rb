@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :employees, path: 'employees'
   resources :kudos
-  namespace :admin do
+  namespace :admins do
     resources :kudos
   end
   resources :pages

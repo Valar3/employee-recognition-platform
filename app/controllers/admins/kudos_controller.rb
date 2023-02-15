@@ -1,4 +1,4 @@
-module Admin
+module Admins
   class KudosController < AdminController
     def index
       @kudos = Kudo.all
@@ -12,7 +12,7 @@ module Admin
                        else
                          'Kudo delete failed'
                        end
-      redirect_to admin_kudos_path
+      redirect_to admins_kudos_path
     end
   end
 end

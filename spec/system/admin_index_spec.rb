@@ -8,7 +8,7 @@ RSpec.describe 'Listing', type: :system do
   end
 
   it '#index?' do
-    visit '/admin/kudos'
+    visit '/admins/kudos'
     expect(page).to have_content 'Kudos listing page'
   end
 end
