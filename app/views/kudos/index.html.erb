@@ -1,4 +1,10 @@
 <h1>Kudos listing page</h1>
+<p> <%if current_employee.number_of_available_kudos > 0%>
+      <%=button_to "Create New Kudo", new_kudo_path , method: :get%>
+    <% else %>
+      <p><h6> You have used all your kudos</h6></p>
+    <%end%>
+</P>
 <table>
   <thead>
     <tr>
@@ -24,6 +30,4 @@
     <% end %>
   </tbody>
 </table>
-<p>
-    <%=button_to "Create New Kudo", new_kudo_path , method: :get%>
-</P>
+

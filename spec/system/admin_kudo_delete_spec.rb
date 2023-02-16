@@ -11,6 +11,7 @@ RSpec.describe 'Kudo management', type: :system do
 
   it 'kudos#delete?' do
     visit 'admins/kudos'
+    expect(page).to have_text('my first factory kudo')
     click_button 'Delete'
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_text('Kudo was deleted successfully')

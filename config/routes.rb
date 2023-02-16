@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   devise_for :employees, path: 'employees'
   resources :kudos
   namespace :admins do
-    resources :kudos
+    resources :kudos, only: [:index, :destroy]
+    resources :pages, only: [:index]
   end
-  resources :pages
-  get '/admin' => "pages#dashboard", :as => :admin_root
+  get '/admin' => "admins/pages#dashboard", :as => :admin_root
   root 'kudos#index'
 end
