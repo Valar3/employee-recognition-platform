@@ -1,10 +1,16 @@
 class KudosController < EmployeesController
   def index
-    @kudos = Kudo.all
+    @kudos = Kudo.includes(%i[giver receiver]).all
   end
 
   def new
     @kudo = Kudo.new
+    if current_employee.number_of_available_kudos <= 0
+      flash[:alert] = 'You have used all your kudos'
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -15,8 +21,10 @@ class KudosController < EmployeesController
     @kudo = Kudo.new(kudo_params)
     @kudo.giver_id = current_employee.id
     if @kudo.save
-      @current_employee.number_of_available_kudos -= 1
-      @current_employee.save
+      Employee.transaction do
+        @current_employee.number_of_available_kudos -= 1
+        @current_employee.save
+      end
       flash[:notice] = 'Kudo was created successfully'
       redirect_to root_path
     else

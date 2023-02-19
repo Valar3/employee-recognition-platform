@@ -1,0 +1,54 @@
+require 'rails_helper'
+
+RSpec.describe 'Kudo management', type: :system do
+  let(:employee) { create(:employee) }
+  let!(:kudo) { create(:kudo, giver: employee) }
+
+  before do
+    login_as(employee, scope: :employee)
+    driven_by(:selenium_chrome_headless)
+  end
+
+  it 'enables me to edit kudos' do
+    visit root_path
+    click_button 'Edit'
+    fill_in 'Title', with: 'A new title'
+    fill_in 'Content', with: 'A new content'
+    click_button 'Update Kudo'
+    expect(page).to have_text('Kudo was edited successfully')
+  end
+
+  it 'enables me to delete kudos' do
+    visit root_path
+    click_button 'Delete'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_text('Kudo was deleted successfully')
+  end
+
+  it 'enables me to create kudos' do
+    visit root_path
+    visit 'kudos/new'
+    fill_in 'kudo[title]', with: 'My kudo'
+    fill_in 'kudo_content', with: 'My content'
+    click_button 'Save Kudo'
+    expect(page).to have_text('Kudo was created successfully')
+  end
+
+  context 'when user has 0 available kudos' do
+    before do
+      employee = create(:employee)
+      login_as(employee, scope: :employee)
+      employee.number_of_available_kudos = 0
+    end
+
+    it 'does not show create kudo button' do
+      visit root_path
+      expect(page).not_to have_button('Create New Kudo')
+    end
+
+    it 'does not allow to open create kudo page' do
+      visit 'kudos/new'
+      expect(page).to have_text('You have used all your kudos')
+    end
+  end
+end

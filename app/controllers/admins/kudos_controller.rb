@@ -6,7 +6,6 @@ module Admins
 
     def destroy
       @kudo = Kudo.find(params[:id])
-      @kudo.destroy
       flash[:notice] = if @kudo.destroy
                          'Kudo was deleted successfully'
                        else
