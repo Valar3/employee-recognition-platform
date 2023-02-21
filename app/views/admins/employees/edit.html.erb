@@ -1,0 +1,30 @@
+<h1>Edit an Employee Account</h1>
+
+<%= form_with(model: [:admins, @employee]) do |f| %>
+  <%if @employee && if @employee.errors.any?  %>
+    <div id="error_explanation">
+      <h2>Errors that prohibited this kudo from being saved:</h2>
+
+      <ul>
+        <% @employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+        <% end %>
+
+      <%end%>
+  <p>
+    <%= f.label :email %><br/>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br/>
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%=f.label :number_of_available_kudos %><br/>
+    <%= f.text_field :number_of_available_kudos %>  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

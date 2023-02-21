@@ -1,0 +1,21 @@
+<h1>Employees listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Employee email</th>
+      <th>No of avail. kudos</th>
+      <th>Update employee profile</th>
+      <th>Delete employee profile</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.email %></td>
+        <td><%= employee.number_of_available_kudos %></td>
+      <td><%=link_to 'Update profile', edit_admins_employee_path(employee), method: :get %></td>
+      <td><%=link_to 'Delete profile', admins_employee_path(employee), method: :delete, data: {confirm: "Are you sure?"}%></td>
+<% end %>
+  </tbody>
+</table>

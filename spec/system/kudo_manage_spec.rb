@@ -16,6 +16,7 @@ RSpec.describe 'Kudo management', type: :system do
     fill_in 'Content', with: 'A new content'
     click_button 'Update Kudo'
     expect(page).to have_text('Kudo was edited successfully')
+    expect(page).to have_text('A new title')
   end
 
   it 'enables me to delete kudos' do
@@ -32,6 +33,7 @@ RSpec.describe 'Kudo management', type: :system do
     fill_in 'kudo_content', with: 'My content'
     click_button 'Save Kudo'
     expect(page).to have_text('Kudo was created successfully')
+    expect(page).to have_text('My kudo')
   end
 
   context 'when user has 0 available kudos' do
