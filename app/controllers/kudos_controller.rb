@@ -20,10 +20,15 @@ class KudosController < EmployeesController
   def create
     @kudo = Kudo.new(kudo_params)
     @kudo.giver_id = current_employee.id
-    if @kudo.save
-      Employee.transaction do
+    Employee.transaction do
+      if @kudo.save!
         @current_employee.number_of_available_kudos -= 1
-        @current_employee.save
+        @current_employee.save!
+
+        flash[:notice] = 'Kudo was created successfully'
+        redirect_to root_path
+      else
+        render 'new'
       end
       flash[:notice] = 'Kudo was created successfully'
       redirect_to root_path
