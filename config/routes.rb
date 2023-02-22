@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :kudos
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
-    resources :pages, only: [:index]
     resources :employees, only: [:index, :edit, :update, :destroy]
   end
   get '/admin' => "admins/pages#dashboard", :as => :admin_root

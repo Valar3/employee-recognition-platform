@@ -6,12 +6,6 @@ module Admins
 
     def edit
       @employee = Employee.find(params[:id])
-      if admin_signed_in?
-        render 'admins/employees/edit'
-      else
-        flash[:alert] = 'You need to be loged as admin to perform this operation'
-        redirect_to admins_employees_path
-      end
     end
 
     def destroy
@@ -26,18 +20,17 @@ module Admins
 
     def update
       @employee = Employee.find(params[:id])
-      if @employee.update(params.require(:employee).permit(:email, :password, :number_of_available_kudos))
+      if @employee.update(employee_params)
         flash[:notice] = 'Employee was edited successfully'
         redirect_to admins_employees_path
       else
         render 'admins/employees/edit'
       end
     end
-  end
+    private
 
-  private
-
-  def employee_params
-    params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+    def employee_params
+     params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+    end
   end
 end
