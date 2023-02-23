@@ -30,8 +30,8 @@ class KudosController < EmployeesController
       else
         render 'new'
       end
-        rescue ActiveRecord::RecordInvalid => exception
-        render 'new'
+    rescue ActiveRecord::RecordInvalid
+      render 'new'
     end
   end
 
