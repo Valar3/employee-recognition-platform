@@ -1,0 +1,21 @@
+<h1>Create a new Company value</h1>
+
+<% if @company_value.errors.any?%>
+    <h2>The following errors prevented the Company value from being saved</h2>
+    <ul>
+        <% @company_value.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with(model: [:admins, @company_value]) do |f| %>
+
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

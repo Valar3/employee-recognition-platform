@@ -1,0 +1,21 @@
+<h1>Company values`` listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Edit Company value</th>
+      <th>Delete Company value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_values.each do |cv| %>
+      <tr>
+        <td><%= cv.title %></td>
+        <td><%=button_to 'Edit',admins_edit_company_value_path(comapny_value), method: :get %></td>
+        <td><%=button_to 'Delete',admins_company_value_path(company_value), method: :delete, data: {confirm: "Are you sure?"}%></td>
+    <% end %>
+  </tbody>
+</table>
+      <%=button_to "Create New Company value", admins_new_company_value_path , method: :get%>
+
