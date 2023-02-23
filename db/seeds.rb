@@ -26,3 +26,4 @@ admins = Admin.create!([{
   email: Faker::Internet.email(domain: 'gmail.com'),
   password: 'password'
   }])
+company_values = CompanyValue.create!([{title: 'Honesty'}, {title: 'Ownership'}, {title: 'Accountability'}, {title: 'Passion'}])
