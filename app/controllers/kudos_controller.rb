@@ -30,11 +30,8 @@ class KudosController < EmployeesController
       else
         render 'new'
       end
-      flash[:notice] = 'Kudo was created successfully'
-      redirect_to root_path
-    else
-      render 'new'
-
+        rescue ActiveRecord::RecordInvalid => exception
+        render 'new'
     end
   end
 
