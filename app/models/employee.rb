@@ -11,5 +11,5 @@ class Employee < ApplicationRecord
   def password_required?
     false
   end
-  validates_presence_of :password, on: :create, message: "can't be blank"
+  validates :password, presence: { on: :create, message: "can't be blank" }
 end

@@ -1,4 +1,4 @@
-<h1>Company values`` listing page</h1>
+<h1>Company values listing page</h1>
 <table>
   <thead>
     <tr>
@@ -9,13 +9,13 @@
   </thead>
 
   <tbody>
-    <% @company_values.each do |cv| %>
+    <% @company_values.each do |company_value| %>
       <tr>
-        <td><%= cv.title %></td>
-        <td><%=button_to 'Edit',admins_edit_company_value_path(comapny_value), method: :get %></td>
+        <td><%= company_value.title %></td>
+        <td><%=button_to 'Edit', edit_admins_company_value_path(company_value), method: :get %></td>
         <td><%=button_to 'Delete',admins_company_value_path(company_value), method: :delete, data: {confirm: "Are you sure?"}%></td>
     <% end %>
   </tbody>
 </table>
-      <%=button_to "Create New Company value", admins_new_company_value_path , method: :get%>
+      <%=button_to "Create New Company value", new_admins_company_value_path , method: :get%>
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :company_value do
-    title { "MyString" }
+    title { 'Strenght' }
   end
 end

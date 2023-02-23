@@ -27,10 +27,11 @@ module Admins
         render 'admins/employees/edit'
       end
     end
+
     private
 
     def employee_params
-     params.require(:employee).permit(:email, :password, :number_of_available_kudos)
+      params.require(:employee).permit(:email, :password, :number_of_available_kudos)
     end
   end
 end
