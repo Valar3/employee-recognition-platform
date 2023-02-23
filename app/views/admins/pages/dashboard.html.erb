@@ -10,9 +10,9 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body><ul>
-<p><li>  <%=button_to 'Employee Panel', href="/employees/sign_in" %></p></li>
-<p><li>  <%=button_to 'Admin Panel', href="/admins/sign_in"%></p></li>
-</ul>
+  <body>
+
+  <%= link_to 'Kudos listing page', admins_kudos_path, method: :get %>
+    <%= yield %>
   </body>
 </html>

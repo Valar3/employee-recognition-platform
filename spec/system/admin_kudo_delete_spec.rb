@@ -1,16 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Kudo management', type: :system do
-  let(:employee) { create(:employee) }
-  let!(:kudo) { create(:kudo, giver: employee) }
+  let!(:kudo) { create(:kudo) }
 
   before do
-    login_as(employee, scope: :employee)
+    admin = create(:admin)
+    login_as(admin, scope: :admin)
     driven_by(:selenium_chrome_headless)
   end
 
-  it 'enables me to delete kudos' do
-    visit root_path
+  it 'kudos#delete?' do
+    visit 'admins/kudos'
+    expect(page).to have_text('my first factory kudo')
     click_button 'Delete'
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_text('Kudo was deleted successfully')
