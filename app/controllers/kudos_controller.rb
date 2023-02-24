@@ -21,12 +21,21 @@ class KudosController < EmployeesController
     @kudo = Kudo.new(kudo_params)
     @kudo.giver_id = current_employee.id
     Employee.transaction do
+<<<<<<< HEAD
       @kudo.save!
       @current_employee.number_of_available_kudos -= 1
       @current_employee.save!
 
       flash[:notice] = 'Kudo was created successfully'
       redirect_to root_path
+=======
+        @kudo.save!
+        @current_employee.number_of_available_kudos -= 1
+        @current_employee.save!
+
+        flash[:notice] = 'Kudo was created successfully'
+        redirect_to root_path
+>>>>>>> master
     rescue ActiveRecord::RecordInvalid
       render 'new'
     end
