@@ -1,7 +1,7 @@
 <h1>Edit a Company value</h1>
 
-<%= form_with(model: [:admins, @company_value]) do |f| %>
-  <%if @company_value && if @company_value.errors.any?  %>
+<%= form_with(model: [:admins, company_value]) do |f| %>
+  <%if company_value && if company_value.errors.any?  %>
     <div id="error_explanation">
       <h2>Errors that prohibited this Company value from being saved:</h2>
 

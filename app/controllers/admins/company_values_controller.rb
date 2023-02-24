@@ -1,11 +1,11 @@
 module Admins
   class CompanyValuesController < AdminController
     def index
-      @company_values = CompanyValue.all
+      render :index, locals: { company_values: CompanyValue.all }
     end
 
     def edit
-      @company_value = CompanyValue.find(params[:id])
+      render :edit, locals: { company_value: CompanyValue.find(params[:id]) }
     end
 
     def destroy
@@ -29,7 +29,7 @@ module Admins
     end
 
     def new
-      @company_value = CompanyValue.new
+      render :new, locals: { company_value: CompanyValue.new }
     end
 
     def create

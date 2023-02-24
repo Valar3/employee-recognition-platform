@@ -3,18 +3,19 @@ require 'rails_helper'
 RSpec.describe 'It manages company values', type: :system do
   before do
     admin = create(:admin)
-    create(:company_value)
     login_as(admin, scope: :admin)
     driven_by(:selenium_chrome_headless)
   end
 
   it 'checks if company values are listed?' do
+    random_company_vaule = create(:company_value)
     visit '/admins/company_values'
     expect(page).to have_button 'Edit'
-    expect(page).to have_text 'Strenght'
+    expect(page).to have_text random_company_vaule.title
   end
 
   it 'edits the title of company value' do
+    create(:company_value)
     visit '/admins/company_values'
     click_button 'Edit'
     fill_in 'Title', with: 'Perfection'
@@ -24,6 +25,7 @@ RSpec.describe 'It manages company values', type: :system do
   end
 
   it 'deletes the company value' do
+    create(:company_value)
     visit '/admins/company_values'
     click_button 'Delete'
     page.driver.browser.switch_to.alert.accept

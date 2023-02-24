@@ -9,7 +9,7 @@
   </thead>
 
   <tbody>
-    <% @company_values.each do |company_value| %>
+    <% company_values.each do |company_value| %>
       <tr>
         <td><%= company_value.title %></td>
         <td><%=button_to 'Edit', edit_admins_company_value_path(company_value), method: :get %></td>
