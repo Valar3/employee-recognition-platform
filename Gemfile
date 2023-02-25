@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rubocop-rspec', '2.8.0'
   # Tests
   gem 'capybara'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'webdrivers', '~> 4.0', require: false
 end
 group :development do
