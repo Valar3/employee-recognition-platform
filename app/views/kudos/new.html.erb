@@ -20,9 +20,12 @@
     <%= f.text_area :content %>
   </p>
   <p>
-
     <%=f.label :receiver %><br/>
     <%=f.collection_select :receiver_id, Employee.all, :id , :email %>
+  </p>
+  <p>
+    <%=f.label :company_value %><br/>
+    <%=f.collection_select :company_value_id, CompanyValue.all, :id , :title %>
   </p>
   <p>
     <%= f.submit %>
