@@ -56,6 +56,6 @@ class KudosController < EmployeesController
   private
 
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
   end
 end

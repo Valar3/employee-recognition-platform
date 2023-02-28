@@ -54,9 +54,7 @@ ActiveRecord::Schema.define(version: 2023_02_27_103148) do
     t.integer "receiver_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_value_id"
-    t.index ["company_value_id"], name: "index_kudos_on_company_value_id"
+    t.integer "company_value_id", null: false
   end
 
-  add_foreign_key "kudos", "company_values"
 end

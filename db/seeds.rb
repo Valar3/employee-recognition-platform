@@ -5,25 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+CompanyValue.destroy_all
+company_values = CompanyValue.create!([{title: 'Honesty'}, {title: 'Ownership'}, {title: 'Accountability'}, {title: 'Passion'}])
 employees = Employee.create!([{email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'},{email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'},{email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'},{email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'},{email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'}])
 kudos = Kudo.create!([{
   title: Faker::Adjective.positive,
   content: Faker::Company.bs,
   giver: Employee.create!(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'),
-  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password')
-}, {
+  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'), company_value_id: 'Honesty'},
+   {
   title: Faker::Adjective.positive,
   content: Faker::Company.bs,
   giver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'),
-  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password')
-}, {
+  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'),company_value_id: 'Passion'},
+   {
   title: Faker::Adjective.positive,
   content: Faker::Company.bs,
   giver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'),
-  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password')
-}])
+  receiver: Employee.create(email: Faker::Internet.email(domain: 'gmail.com'), password: 'password'), company_value_id: 'Ownership'}])
 admins = Admin.create!([{
   email: Faker::Internet.email(domain: 'gmail.com'),
   password: 'password'
   }])
-company_values = CompanyValue.create!([{title: 'Honesty'}, {title: 'Ownership'}, {title: 'Accountability'}, {title: 'Passion'}])
+
