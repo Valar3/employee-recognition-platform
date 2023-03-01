@@ -3,4 +3,5 @@ class Kudo < ApplicationRecord
   validates :content, presence: true
   belongs_to :giver, class_name: 'Employee'
   belongs_to :receiver, class_name: 'Employee'
+  belongs_to :company_value
 end

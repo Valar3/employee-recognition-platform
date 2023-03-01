@@ -25,7 +25,7 @@
   </p>
   <p>
     <%=f.label :company_value %><br/>
-    <%=f.select(:company_value_id, [['Honesty', 1], ['Ownership', 2],['Passion', 3], ['Accountability', 4]]) %>
+    <%=f.collection_select :company_value_id, CompanyValue.all, :id , :title %>
   </p>
   <p>
     <%= f.submit %>

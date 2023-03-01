@@ -1,6 +1,6 @@
 class KudosController < EmployeesController
   def index
-    @kudos = Kudo.includes(%i[giver receiver]).all
+    @kudos = Kudo.includes(%i[giver receiver company_value]).all
   end
 
   def new

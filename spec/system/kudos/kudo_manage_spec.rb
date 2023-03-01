@@ -14,6 +14,7 @@ RSpec.describe 'Kudo management', type: :system do
     click_button 'Edit'
     fill_in 'Title', with: 'A new title'
     fill_in 'Content', with: 'A new content'
+    page.select kudo.company_value.title, from: 'kudo_company_value_id'
     click_button 'Update Kudo'
     expect(page).to have_text('Kudo was edited successfully')
     expect(page).to have_text('A new title')
@@ -31,6 +32,7 @@ RSpec.describe 'Kudo management', type: :system do
     visit 'kudos/new'
     fill_in 'kudo[title]', with: 'My kudo'
     fill_in 'kudo_content', with: 'My content'
+    page.select kudo.company_value.title, from: 'kudo_company_value_id'
     click_button 'Save Kudo'
     expect(page).to have_text('Kudo was created successfully')
     expect(page).to have_text('My kudo')
