@@ -1,0 +1,29 @@
+<h1>Create a new Reward</h1>
+
+<% if reward.errors.any?%>
+    <h2>The following errors prevented the Reward from being saved</h2>
+    <ul>
+        <% reward.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with(model: [:admins, reward]) do |f| %>
+
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :price %><br/>
+    <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

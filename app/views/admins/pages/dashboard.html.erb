@@ -11,12 +11,20 @@
   </head>
 
   <body>
-
- <p> <%= link_to 'Kudos listing page', admins_kudos_path, method: :get %></p>
-
- <p> <%= link_to 'Employees listing page', admins_employees_path, method: :get %></p>
-
- <p> <%= link_to 'Comapany values listing page', admins_company_values_path, method: :get %></p>
+    <ul>
+      <li>
+  <p> <%= link_to 'Kudos listing page', admins_kudos_path, method: :get %></p>
+      </li>
+      <li>
+  <p> <%= link_to 'Employees listing page', admins_employees_path, method: :get %></p>
+      </li>
+      <li>
+  <p> <%= link_to 'Comapany values listing page', admins_company_values_path, method: :get %></p>
+      </li>
+      <li>
+  <p> <%= link_to 'Rewards listing page', admins_rewards_path, method: :get %></p>
+      </li>
+    </ul>
     <%= yield %>
   </body>
 </html>

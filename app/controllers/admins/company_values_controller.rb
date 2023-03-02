@@ -19,8 +19,8 @@ module Admins
     end
 
     def update
-      @company_value = CompanyValue.find(params[:id])
-      if @company_value.update(company_value_params)
+      company_value = CompanyValue.find(params[:id])
+      if company_value.update(company_value_params)
         flash[:notice] = 'Company value was edited successfully'
         redirect_to admins_company_values_path
       else
@@ -33,8 +33,8 @@ module Admins
     end
 
     def create
-      @company_value = CompanyValue.new(company_value_params)
-      if @company_value.save
+      company_value = CompanyValue.new(company_value_params)
+      if company_value.save
         flash[:notice] = 'Company value was created successfully'
         redirect_to admins_company_values_path
       else
