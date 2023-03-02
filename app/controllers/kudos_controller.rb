@@ -1,6 +1,6 @@
 class KudosController < EmployeesController
   def index
-    @kudos = Kudo.includes(%i[giver receiver]).all
+    @kudos = Kudo.includes(%i[giver receiver company_value]).all
   end
 
   def new
@@ -56,6 +56,6 @@ class KudosController < EmployeesController
   private
 
   def kudo_params
-    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id)
+    params.require(:kudo).permit(:title, :content, :giver_id, :receiver_id, :company_value_id)
   end
 end

@@ -1,5 +1,5 @@
 class CompanyValue < ApplicationRecord
   validates :title, presence: true
-  validates :title, uniqueness: { on: :create, message: 'has already been taken' }
-  validates :title, uniqueness: { on: :create, message: 'has already been taken' }
+  validates :title, uniqueness: true
+  has_many :kudos, dependent: :destroy, inverse_of: :company_value
 end

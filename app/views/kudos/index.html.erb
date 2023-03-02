@@ -12,7 +12,8 @@
       <th>Content</th>
       <th>Given by</th>
       <th>Received by</th>
-      <th colspan ="2">Edit or delete</th>
+      <th>Company value</th>
+       <th colspan ="2">Edit or delete</th>
     </tr>
   </thead>
 
@@ -23,6 +24,7 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.giver&.email %></td>
         <td><%= kudo.receiver&.email %></td>
+        <td><%= kudo.company_value&.title%></td>
         <% if employee_signed_in? && kudo.giver == current_employee%>
           <td><%=button_to 'Edit Kudo', edit_kudo_path(kudo), method: :get %></td>
           <td><%=button_to 'Delete Kudo',   kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
