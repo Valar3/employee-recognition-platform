@@ -24,7 +24,7 @@ module Admins
         flash[:notice] = 'Reward was edited successfully'
         redirect_to admins_rewards_path
       else
-        render 'admins/rewards/edit'
+        render :edit, locals: { reward: }
       end
     end
 
@@ -38,7 +38,7 @@ module Admins
         flash[:notice] = 'Reward was created successfully'
         redirect_to admins_rewards_path
       else
-        render 'admins/rewards/new'
+        render :new, locals: { reward: }
       end
     end
 

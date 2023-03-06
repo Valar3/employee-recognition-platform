@@ -24,7 +24,7 @@ module Admins
         flash[:notice] = 'Company value was edited successfully'
         redirect_to admins_company_values_path
       else
-        render 'admins/company_values/edit'
+        render :edit, locals: { company_value: }
       end
     end
 
@@ -38,7 +38,7 @@ module Admins
         flash[:notice] = 'Company value was created successfully'
         redirect_to admins_company_values_path
       else
-        render 'admins/company_values/new'
+        render :new, locals: { company_value: }
       end
     end
 

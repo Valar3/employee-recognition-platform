@@ -3,7 +3,7 @@
 <%= form_with(model: [:admins, reward]) do |f| %>
   <%if reward && if reward.errors.any?  %>
     <div id="error_explanation">
-      <h2>Errors that prohibited this Company value from being saved:</h2>
+      <h2>Errors that prohibited this Reward from being saved:</h2>
 
       <ul>
         <% reward.errors.each do |error| %>
