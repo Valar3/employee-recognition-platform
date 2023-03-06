@@ -3,7 +3,7 @@
 <%= form_with(model: [:admins, @employee]) do |f| %>
   <%if @employee && if @employee.errors.any?  %>
     <div id="error_explanation">
-      <h2>Errors that prohibited this kudo from being saved:</h2>
+      <h2>Errors that prohibited this employee from being saved:</h2>
 
       <ul>
         <% @employee.errors.each do |error| %>

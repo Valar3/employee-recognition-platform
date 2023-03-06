@@ -6,7 +6,7 @@
       <h2>Errors that prohibited this Company value from being saved:</h2>
 
       <ul>
-        <% @company_value.errors.each do |error| %>
+        <% company_value.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
         <% end %>
