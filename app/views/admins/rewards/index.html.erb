@@ -18,6 +18,7 @@
           <td><%= reward.price %></td>
         <td><%=button_to 'Edit', edit_admins_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Delete',admins_reward_path(reward), method: :delete, data: {confirm: "Are you sure?"}%></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
