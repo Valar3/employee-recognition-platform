@@ -57,4 +57,28 @@ RSpec.describe 'Kudo management', type: :system do
       expect(page).to have_text('You have used all your kudos')
     end
   end
+
+  context 'when user receives a kudo' do
+    before do
+      create(:employee)
+      login_as(employee, scope: :employee)
+    end
+
+    it 'shows the number of points' do
+      employee.number_of_earned_points = 10
+      visit root_path
+      expect(page).to have_text('Total points earned: 10')
+    end
+
+    it 'substracts the points upon deletion' do
+      login_as(kudo.giver, scope: :employee)
+      employee.number_of_earned_points = 10
+      visit root_path
+      click_button 'Delete'
+      page.driver.browser.switch_to.alert.accept
+      login_as(employee, scope: :employee)
+      visit root_path
+      expect(page).to have_text('Total points earned: 0')
+    end
+  end
 end

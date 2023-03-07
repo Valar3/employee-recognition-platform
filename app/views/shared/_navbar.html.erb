@@ -10,6 +10,12 @@
           <li class="nav-item">
             <p>Available Kudos left to give: <%=current_employee.number_of_available_kudos%></p>
           </li>
+          <li class="nav-item"  allign=right>
+            <p>Total points earned: <%=current_employee.number_of_earned_points %></p>
+          </li>
+          <li class="nav-item"  allign=right>
+            <p>Current employee logged: <%=current_employee.email %></p>
+          </li>
       <%else%>
          <li class="nav-item">
             <%= link_to "Sign up", new_employee_registration_path, method: :get, class: 'nav-link' %>

@@ -25,7 +25,8 @@ module Employees
         @kudo.save!
         @current_employee.number_of_available_kudos -= 1
         @current_employee.save!
-
+        @kudo.receiver.number_of_earned_points += 10
+        @kudo.receiver.save!
         flash[:notice] = 'Kudo was created successfully'
         redirect_to root_path
       rescue ActiveRecord::RecordInvalid
@@ -46,9 +47,12 @@ module Employees
     def destroy
       @kudo = Kudo.find(params[:id])
       @kudo.destroy!
-      flash[:notice] =  'Kudo was deleted successfully'
+      @kudo.receiver.number_of_earned_points -= 10
+      @kudo.receiver.save!
+      flash[:notice] = 'Kudo was deleted successfully'
       redirect_to root_path
-      rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid
+      Rails.logger.debug 'call 911'
     end
 
     private
