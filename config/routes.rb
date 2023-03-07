@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :employees, path: 'employees'
-  resources :kudos
+  namespace :employees do
+    resources :kudos
+    resources :rewards, only: [:index, :show]
+  end
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
     resources :employees, only: [:index, :edit, :update, :destroy]
@@ -11,5 +14,5 @@ Rails.application.routes.draw do
     resources :rewards
   end
   get '/admin' => "admins/pages#dashboard", :as => :admin_root
-  root 'kudos#index'
+  root 'employees/kudos#index'
 end

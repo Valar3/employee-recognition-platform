@@ -1,10 +1,13 @@
 <h1>Kudos listing page</h1>
 <p> <%if current_employee.number_of_available_kudos > 0%>
-      <%=button_to "Create New Kudo", new_kudo_path , method: :get%>
+      <%=button_to "Create New Kudo", new_employees_kudo_path , method: :get%>
     <% else %>
       <p><h6> You have used all your kudos</h6></p>
     <%end%>
 </P>
+<p>
+  <%=button_to "Reward's list", employees_rewards_path , method: :get%>
+</p>
 <table>
   <thead>
     <tr>
@@ -18,7 +21,7 @@
   </thead>
 
   <tbody>
-    <% @kudos.each do |kudo| %>
+    <% kudos.each do |kudo| %>
       <tr>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
@@ -26,8 +29,8 @@
         <td><%= kudo.receiver&.email %></td>
         <td><%= kudo.company_value&.title%></td>
         <% if employee_signed_in? && kudo.giver == current_employee%>
-          <td><%=button_to 'Edit Kudo', edit_kudo_path(kudo), method: :get %></td>
-          <td><%=button_to 'Delete Kudo',   kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
+          <td><%=button_to 'Edit Kudo', edit_employees_kudo_path(kudo), method: :get %></td>
+          <td><%=button_to 'Delete Kudo',   employees_kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
         <%end%>
     <% end %>
   </tbody>

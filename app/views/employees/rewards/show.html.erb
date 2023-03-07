@@ -1,0 +1,21 @@
+<h1> Reward's description </h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= reward.title %></td>
+        <td><%= reward.description %></td>
+        <td><%= reward.price %></td>
+      </tr>
+      <p>
+        <%=button_to 'Back to reward list',  employees_rewards_path(reward), method: :get %>
+      </p>
+  </tbody>
+</table>

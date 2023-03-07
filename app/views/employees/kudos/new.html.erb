@@ -1,17 +1,16 @@
-<h1>Edit a Kudo</h1>
+<h1>Create a new Kudo</h1>
 
-<%= form_with(model: @kudo) do |f| %>
-  <%if @kudo && if @kudo.errors.any?  %>
-    <div id="error_explanation">
-      <h2>Errors that prohibited this kudo from being saved:</h2>
-
-      <ul>
-        <% @kudo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<% if @kudo.errors.any?%>
+    <h2>The following errors prevented the Kudo from being saved</h2>
+    <ul>
+        <% @kudo.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
         <% end %>
-        <% end %>
+    </ul>
+<% end %>
+<%= form_with(model: [:employees, @kudo]) do |f| %>
 
-      <%end%>
+
   <p>
     <%= f.label :title %><br/>
     <%= f.text_field :title %>
@@ -21,11 +20,10 @@
     <%= f.text_area :content %>
   </p>
   <p>
-
     <%=f.label :receiver %><br/>
     <%=f.collection_select :receiver_id, Employee.all, :id , :email %>
   </p>
-   <p>
+  <p>
     <%=f.label :company_value %><br/>
     <%=f.collection_select :company_value_id, CompanyValue.all, :id , :title %>
   </p>
