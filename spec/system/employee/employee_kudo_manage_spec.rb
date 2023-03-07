@@ -31,11 +31,11 @@ RSpec.describe 'Kudo management', type: :system do
 
   it 'enables me to create kudos' do
     visit root_path
-    visit 'kudos/new'
+    visit 'employees/kudos/new'
     fill_in 'kudo[title]', with: 'My kudo'
     fill_in 'kudo_content', with: 'My content'
     page.select kudo.company_value.title, from: 'kudo_company_value_id'
-    click_button 'Save Kudo'
+    click_button 'Create Kudo'
     expect(page).to have_text('Kudo was created successfully')
     expect(page).to have_text('My kudo')
   end
@@ -53,7 +53,7 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'does not allow to open create kudo page' do
-      visit 'kudos/new'
+      visit 'employees/kudos/new'
       expect(page).to have_text('You have used all your kudos')
     end
   end

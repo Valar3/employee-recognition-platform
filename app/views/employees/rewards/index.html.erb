@@ -1,0 +1,21 @@
+<h1>Rewards listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Show Reward</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rewards.each do |reward| %>
+      <tr>
+        <td><%= reward.title %></td>
+          <td><%= reward.price %></td>
+        <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
