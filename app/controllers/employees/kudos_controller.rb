@@ -45,13 +45,10 @@ module Employees
 
     def destroy
       @kudo = Kudo.find(params[:id])
-      @kudo.destroy
-      flash[:notice] = if @kudo.destroy
-                         'Kudo was deleted successfully'
-                       else
-                         'Kudo delete failed'
-                       end
+      @kudo.destroy!
+      flash[:notice] =  'Kudo was deleted successfully'
       redirect_to root_path
+      rescue ActiveRecord::RecordInvalid
     end
 
     private
