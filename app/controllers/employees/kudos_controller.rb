@@ -25,12 +25,15 @@ module Employees
         @kudo.save!
         @current_employee.number_of_available_kudos -= 1
         @current_employee.save!
-
-        flash[:notice] = 'Kudo was created successfully'
-        redirect_to root_path
-      rescue ActiveRecord::RecordInvalid
-        render 'employees/kudos/new'
+        Kudo.transaction do
+          @kudo.receiver.number_of_earned_points += 10
+          @kudo.receiver.save!
+          flash[:notice] = 'Kudo was created successfully'
+          redirect_to root_path
+        end
       end
+    rescue ActiveRecord::RecordInvalid
+      render 'employees/kudos/new'
     end
 
     def update
@@ -45,10 +48,16 @@ module Employees
 
     def destroy
       @kudo = Kudo.find(params[:id])
-      @kudo.destroy!
-      flash[:notice] =  'Kudo was deleted successfully'
+      Kudo.transaction do
+        @kudo.destroy!
+        @kudo.receiver.number_of_earned_points -= 10
+        @kudo.receiver.save!
+        flash[:notice] = 'Kudo was deleted successfully'
+        redirect_to root_path
+      end
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = 'Kudo deletion failed'
       redirect_to root_path
-      rescue ActiveRecord::RecordInvalid
     end
 
     private
