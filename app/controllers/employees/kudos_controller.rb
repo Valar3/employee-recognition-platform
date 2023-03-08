@@ -30,10 +30,10 @@ module Employees
           @kudo.receiver.save!
           flash[:notice] = 'Kudo was created successfully'
           redirect_to root_path
-        rescue ActiveRecord::RecordInvalid
-          render 'employees/kudos/new'
         end
       end
+    rescue ActiveRecord::RecordInvalid
+      render 'employees/kudos/new'
     end
 
     def update
