@@ -6,12 +6,16 @@ module Admins
 
     def destroy
       @kudo = Kudo.find(params[:id])
-      flash[:notice] = if @kudo.destroy
-                         'Kudo was deleted successfully'
-                       else
-                         'Kudo delete failed'
-                       end
-      redirect_to admins_kudos_path
+      Kudo.transaction do
+        @kudo.destroy!
+        @kudo.receiver.number_of_earned_points -= 10
+        @kudo.receiver.save!
+        flash[:notice] = 'Kudo was deleted successfully'
+        redirect_to admins_kudos_path
+      rescue ActiveRecord::RecordInvalid
+        flash[:notice] = 'Kudo deletion failed'
+        redirect_to admins_kudos_path
+      end
     end
   end
 end

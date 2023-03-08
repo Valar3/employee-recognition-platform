@@ -60,7 +60,6 @@ RSpec.describe 'Kudo management', type: :system do
 
   context 'when user receives a kudo' do
     before do
-      create(:employee)
       login_as(employee, scope: :employee)
     end
 
