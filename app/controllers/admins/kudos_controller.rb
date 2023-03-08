@@ -12,10 +12,10 @@ module Admins
         @kudo.receiver.save!
         flash[:notice] = 'Kudo was deleted successfully'
         redirect_to admins_kudos_path
-      rescue ActiveRecord::RecordInvalid
-        flash[:notice] = 'Kudo deletion failed'
-        redirect_to admins_kudos_path
       end
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = 'Kudo deletion failed'
+      redirect_to admins_kudos_path
     end
   end
 end

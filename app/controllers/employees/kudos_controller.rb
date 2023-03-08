@@ -54,10 +54,10 @@ module Employees
         @kudo.receiver.save!
         flash[:notice] = 'Kudo was deleted successfully'
         redirect_to root_path
-      rescue ActiveRecord::RecordInvalid
-        flash[:notice] = 'Kudo deletion failed'
-        redirect_to root_path
       end
+    rescue ActiveRecord::RecordInvalid
+      flash[:notice] = 'Kudo deletion failed'
+      redirect_to root_path
     end
 
     private
