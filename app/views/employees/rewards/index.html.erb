@@ -5,15 +5,17 @@
       <th>Title</th>
       <th>Price</th>
       <th>Show Reward</th>
+      <th>Buy Reward</th>
     </tr>
   </thead>
 
   <tbody>
-    <% rewards.each do |reward| %>
+    <% @rewards.each do |reward| %>
       <tr>
         <td><%= reward.title %></td>
           <td><%= reward.price %></td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
+        <td><%=button_to 'Buy',  employees_orders_path(reward_id: reward.id), method: :post%></td>
       </tr>
     <% end %>
   </tbody>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   namespace :employees do
     resources :kudos
     resources :rewards, only: [:index, :show]
+     resources :orders, only: [:create, :new], module: :rewards
+
   end
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
