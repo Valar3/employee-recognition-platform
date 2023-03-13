@@ -13,10 +13,10 @@ module Employees
           current_employee.number_of_earned_points -= @reward.price
           @current_employee.save
           flash[:notice] = 'Reward was successfully bought'
-          redirect_to employees_rewards_path
         else
-          render :new
+          flash[:alert] = 'You do not have enough points'
         end
+        redirect_to employees_rewards_path
       end
 
       private

@@ -71,13 +71,12 @@ RSpec.describe 'Kudo management', type: :system do
 
     it 'substracts the points upon deletion' do
       login_as(kudo.giver, scope: :employee)
-      employee.number_of_earned_points = 10
       visit root_path
       click_button 'Delete'
       page.driver.browser.switch_to.alert.accept
-      login_as(employee, scope: :employee)
+      login_as(kudo.receiver, scope: :employee)
       visit root_path
-      expect(page).to have_text('Total points earned: 0')
+      expect(page).to have_text('Total points earned: 90')
     end
   end
 end
