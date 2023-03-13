@@ -10,10 +10,10 @@
   </thead>
 
   <tbody>
-    <% @rewards.each do |reward| %>
+    <% reward.each do |reward| %>
       <tr>
         <td><%= reward.title %></td>
-          <td><%= reward.price %></td>
+          <td><%= reward.price %>$</td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Buy',  employees_orders_path(reward_id: reward.id), method: :post%></td>
       </tr>

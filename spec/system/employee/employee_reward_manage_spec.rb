@@ -8,7 +8,6 @@ RSpec.describe 'It manages rewards', type: :system do
   end
 
   it 'checks if rewards are listed?' do
-    create(:employee)
     random_reward = create(:reward)
     visit '/employees/rewards'
     expect(page).to have_button 'Show'

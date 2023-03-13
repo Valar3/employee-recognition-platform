@@ -1,7 +1,7 @@
 module Employees
   class RewardsController < EmployeesController
     def index
-      @rewards = Reward.all
+      render :index, locals: { reward: Reward.all }
     end
 
     def show

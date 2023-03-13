@@ -3,6 +3,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { 'password' }
     number_of_available_kudos { 10 }
-    number_of_earned_points { 100.to_f }
+    number_of_earned_points { 100 }
   end
 end
