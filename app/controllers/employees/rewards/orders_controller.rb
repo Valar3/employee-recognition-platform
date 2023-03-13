@@ -7,7 +7,6 @@ module Employees
       end
 
       def create
-        # flash[:alert]= 'You do not have enough points for that reward'
         @order = @reward.orders.new(employee: current_employee)
         if @order.save
           current_employee.number_of_earned_points -= @reward.price
