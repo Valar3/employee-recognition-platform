@@ -8,25 +8,25 @@ module Employees
       @kudo = Kudo.new
       if current_employee.number_of_available_kudos <= 0
         flash[:alert] = 'You have used all your kudos'
-          redirect_to root_path
-        else
-          render 'employees/kudos/new'
-        end
+        redirect_to root_path
+      else
+        render 'employees/kudos/new'
       end
+    end
 
-      def edit
-        render :edit, locals: { kudo: Kudo.find(params[:id]) }
-      end
+    def edit
+      render :edit, locals: { kudo: Kudo.find(params[:id]) }
+    end
 
-      def create
-        @kudo = Kudo.new(kudo_params)
-        @kudo.giver_id = current_employee.id
-        Employee.transaction do
-          @kudo.save!
-          @current_employee.number_of_available_kudos -= 1
-          @current_employee.save!
-          Kudo.transaction do
-            @kudo.receiver.number_of_earned_points += 10
+    def create
+      @kudo = Kudo.new(kudo_params)
+      @kudo.giver_id = current_employee.id
+      Employee.transaction do
+        @kudo.save!
+        @current_employee.number_of_available_kudos -= 1
+        @current_employee.save!
+        Kudo.transaction do
+          @kudo.receiver.number_of_earned_points += 10
           @kudo.receiver.save!
           flash[:notice] = 'Kudo was created successfully'
           redirect_to root_path
