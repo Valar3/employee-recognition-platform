@@ -20,4 +20,11 @@ RSpec.describe 'It manages rewards', type: :system do
     click_button 'Show'
     expect(page).to have_text random_reward.description
   end
+
+  it 'checks if points get substracted after buying reward' do
+    random_reward = create(:reward)
+    visit 'employees/rewards'
+    click_button 'Buy'
+    expect(page).to have_text(100 - random_reward.price.to_i)
+  end
 end

@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
                          inverse_of: :giver
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy,
                             inverse_of: :receiver
-
+  has_many :orders, dependent: :destroy, inverse_of: :employee
   def password_required?
     false
   end
