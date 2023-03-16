@@ -10,13 +10,16 @@
   </thead>
 
   <tbody>
+
     <% orders.each do |order| %>
+       <%if current_employee == order.employee%>
       <tr>
         <td><%= order.reward.title %></td>
         <td><%= order.reward.description %></td>
         <td><%= order.created_at %></td>
-        <td><%= @reward&.price2 %></td>
+        <td><%= order.price %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
