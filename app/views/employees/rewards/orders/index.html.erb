@@ -1,0 +1,22 @@
+<h4>Listing of <%=current_employee.email%> rewards</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Time of aquisition</th>
+      <th>Price at the time of aquisition</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td><%= order.reward.title %></td>
+        <td><%= order.reward.description %></td>
+        <td><%= order.created_at %></td>
+        <td><%= @reward&.price2 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

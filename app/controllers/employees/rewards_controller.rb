@@ -9,7 +9,9 @@ module Employees
     end
 
     private
-
+    def copy
+    price = Marshal.load(Marshal.dump(price))
+    end
     def reward_params
       params.require(:reward).permit(:title, :description, :price)
     end
