@@ -21,7 +21,6 @@ module Employees
 
       def index
         render :index, locals: { orders: Order.all }
-        # @orders&.where(employee_id: current_employee.id)
       end
     end
   end
