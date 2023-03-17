@@ -27,4 +27,13 @@ RSpec.describe 'It manages rewards', type: :system do
     click_button 'Buy'
     expect(page).to have_text(100 - random_reward.price.to_i)
   end
+
+  it 'checks if the rewards bought are listed for the current employee' do
+    random_reward = create(:reward)
+    visit 'employees/rewards'
+    click_button 'Buy'
+    visit root_path
+    click_button 'Current Employee Reward List'
+    expect(page).to have_text random_reward.title
+  end
 end
