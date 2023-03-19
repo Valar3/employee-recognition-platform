@@ -6,7 +6,8 @@
       <th>No of avail. kudos</th>
       <th>Update employee profile</th>
       <th>Delete employee profile</th>
-    </tr>
+      <th>Show employee reward list</th>
+   </tr>
   </thead>
 
   <tbody>
@@ -16,6 +17,7 @@
         <td><%= employee.number_of_available_kudos %></td>
       <td><%=link_to 'Update profile', edit_admins_employee_path(employee), method: :get %></td>
       <td><%=link_to 'Delete profile', admins_employee_path(employee), method: :delete, data: {confirm: "Are you sure?"}%></td>
+      <td><%=link_to 'Show list', admins_order_path(employee) %></td>
 <% end %>
   </tbody>
 </table>

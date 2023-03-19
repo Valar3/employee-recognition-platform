@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :employees, only: [:index, :edit, :update, :destroy]
     resources :company_values
     resources :rewards
+      resources :orders, only: [:index, :show], module: :employees
   end
   get '/admin' => "admins/pages#dashboard", :as => :admin_root
   root 'employees/kudos#index'

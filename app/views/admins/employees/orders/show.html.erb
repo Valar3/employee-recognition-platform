@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Time of aquisition</th>
+      <th>Price at the time of aquisition</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+       <%if order.employee%>
+      <tr>
+        <td><%= order.reward.title %></td>
+        <td><%= order.reward.description %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.price %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
