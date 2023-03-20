@@ -4,6 +4,10 @@ module Admins
       @employees = Employee.all
     end
 
+    def show
+      render :show, locals: { employee: Employee.find(params[:id]) }
+    end
+
     def edit
       @employee = Employee.find(params[:id])
     end

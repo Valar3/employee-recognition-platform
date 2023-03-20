@@ -18,10 +18,6 @@ module Employees
         flash[:alert] = 'You do not have enough points'
         redirect_to employees_rewards_path
       end
-
-      def index
-        render :index, locals: { orders: Order.all }
-      end
     end
   end
 end

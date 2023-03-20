@@ -11,14 +11,12 @@
   <tbody>
 
 
-       <%if order.employee%>
+
       <tr>
-        <td><%= order.reward.title %></td>
-        <td><%= order.reward.description %></td>
-        <td><%= order.created_at %></td>
-        <td><%= order.price %></td>
+        <td><%= employee.orders.reward.title %></td>
+        <td><%= employee.orders.reward.description %></td>
+        <td><%= employee.orders.created_at %></td>
+        <td><%= employee.order.price %></td>
       </tr>
-      <% end %>
-    <% end %>
   </tbody>
 </table>
