@@ -10,13 +10,16 @@
 
   <tbody>
 
+<% if !employee.orders.blank? %>
+  <% for employee.orders.reward in employee.orders %>
 
-
-      <tr>
+    <tr>
         <td><%= employee.orders.reward.title %></td>
         <td><%= employee.orders.reward.description %></td>
         <td><%= employee.orders.created_at %></td>
         <td><%= employee.order.price %></td>
       </tr>
+      <%end%>
+      <%end%>
   </tbody>
 </table>

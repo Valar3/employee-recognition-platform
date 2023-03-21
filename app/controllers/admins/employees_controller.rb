@@ -2,10 +2,8 @@ module Admins
   class EmployeesController < AdminController
     def index
       @employees = Employee.all
-    end
-
-    def show
-      render :show, locals: { employee: Employee.find(params[:id]) }
+      #@employees = Employee.find(params[:id])
+      @employees =@employees.order
     end
 
     def edit
