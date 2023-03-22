@@ -10,9 +10,9 @@
 
   <tbody>
 
-    <% orders.each do |order| %>
+    <% @orders.each do |order| %>
       <tr>
-        <td><%= employee.order.reward.title %></td>
+        <td><%= order.reward.title %></td>
         <td><%= order.reward.description %></td>
         <td><%= order.created_at %></td>
         <td><%= order.price %></td>

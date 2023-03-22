@@ -2,8 +2,6 @@ module Admins
   class EmployeesController < AdminController
     def index
       @employees = Employee.all
-      #@employees = Employee.find(params[:id])
-      @employees =@employees.order
     end
 
     def edit

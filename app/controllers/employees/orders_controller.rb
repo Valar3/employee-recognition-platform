@@ -1,5 +1,4 @@
 module Employees
-  module Rewards
     class OrdersController < EmployeesController
       def create
         reward = Reward.find(params[:reward_id])
@@ -20,4 +19,3 @@ module Employees
       end
     end
   end
-end

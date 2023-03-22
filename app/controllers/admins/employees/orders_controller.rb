@@ -3,13 +3,12 @@ module Admins
     class OrdersController < AdminController
 
       def index
-        render :index, locals: { orders: Order.all }
+        @employee = employee.orders
       end
 
       def show
-        render :show, locals: { order: Order.find(params[:id])}
+        employee = Employee.find(params[:id])
       end
-
     end
   end
 end
