@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
-    resources :employees, only: [:index, :edit, :update, :destroy,:show] do
+    resources :employees, only: [:index, :edit, :update, :destroy] do
       resources :orders, only: [:index]
     end
     resources :company_values

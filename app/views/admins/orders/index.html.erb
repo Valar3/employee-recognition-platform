@@ -5,12 +5,13 @@
       <th>Description</th>
       <th>Time of aquisition</th>
       <th>Price at the time of aquisition</th>
+      <th>Show this order</th>
     </tr>
   </thead>
 
   <tbody>
 
-    <% @orders.each do |order| %>
+    <% @orders.each do  |order| %>
       <tr>
         <td><%= order.reward.title %></td>
         <td><%= order.reward.description %></td>
@@ -18,5 +19,7 @@
         <td><%= order.price %></td>
       </tr>
     <% end %>
-  </tbody>
+        <%= button_to 'Back to employees listing page', admins_employees_path, method: :get%>
+
+  <tbody>
 </table>

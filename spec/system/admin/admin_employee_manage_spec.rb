@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'It enables to manage employee accounts', type: :system do
+  let!(:employee) { create(:employee) }
+  let!(:admin) { create(:admin) }
+
   before do
-    admin = create(:admin)
-    create(:employee)
     login_as(admin, scope: :admin)
     driven_by(:selenium_chrome_headless)
   end
@@ -28,5 +29,16 @@ RSpec.describe 'It enables to manage employee accounts', type: :system do
     click_link 'Delete profile'
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_content 'Employee account was deleted successfully'
+  end
+
+  it 'checks if the rewads are listed in admin/employee panel' do
+    login_as(employee, scope: :employee)
+    random_reward = create(:reward)
+    visit 'employees/rewards'
+    click_button 'Buy'
+    login_as(admin, scope: :admin)
+    visit 'admins/employees'
+    click_link 'Show list'
+    expect(page).to have_text random_reward.title
   end
 end
