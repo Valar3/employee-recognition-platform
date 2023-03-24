@@ -6,14 +6,16 @@ Rails.application.routes.draw do
   namespace :employees do
     resources :kudos
     resources :rewards, only: [:index, :show]
-     resources :orders, only: [:create, :index], module: :rewards
-
+    resources :orders, only: [:create, :index, :show]
   end
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
-    resources :employees, only: [:index, :edit, :update, :destroy]
+    resources :employees, only: [:index, :edit, :update, :destroy] do
+      resources :orders, only: [:index]
+    end
     resources :company_values
     resources :rewards
+
   end
   get '/admin' => "admins/pages#dashboard", :as => :admin_root
   root 'employees/kudos#index'
