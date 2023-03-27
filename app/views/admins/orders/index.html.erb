@@ -5,7 +5,8 @@
       <th>Description</th>
       <th>Time of aquisition</th>
       <th>Price at the time of aquisition</th>
-      <th>Show this order</th>
+      <th>Delivery status</th>
+      <th>Deliver</th>
     </tr>
   </thead>
 
@@ -17,6 +18,7 @@
         <td><%= order.reward.description %></td>
         <td><%= order.created_at %></td>
         <td><%= order.price %></td>
+        <td><%= order.status   %></td>
       </tr>
     <% end %>
         <%= button_to 'Back to employees listing page', admins_employees_path, method: :get%>
