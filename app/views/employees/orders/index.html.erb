@@ -23,3 +23,6 @@
     <% end %>
   </tbody>
 </table>
+Filtering options <%= button_to 'Delivered', href = 'orders?status=delivered', method: :get%> <%= button_to 'Not Delivered', href = 'orders?status=non_delivered', method: :get%>
+      <p><%=button_to 'Back to Kudos view', root_path, method: :get%></p>
+
