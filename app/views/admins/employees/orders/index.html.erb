@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Time of aquisition</th>
+      <th>Asigned employee</th>
+      <th>Price at the time of aquisition</th>
+      <th>Delivery status</th>
+      <th>Deliver</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @orders.each do  |order| %>
+      <tr>
+        <td><%= order.reward.title %></td>
+        <td><%= order.reward.description %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.employee.email %></td>
+        <td><%= order.price %></td>
+        <td><%= order.status   %></td>
+       <%if order.status == 'non_delivered'     %>
+        <td><%= button_to 'Deliver',admins_employees_order_path(order), method: :patch, data: {confirm: 'Are you sure you want to deliver this reward ?'} %></td>
+
+      <%end%>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+<%= button_to 'Back to admins panel', admin_root_path, method: :get%>

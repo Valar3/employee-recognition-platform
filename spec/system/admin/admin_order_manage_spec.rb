@@ -23,4 +23,14 @@ RSpec.describe 'Manage order object', type: :system do
     click_button 'Current Employee Reward List'
     expect(page).to have_text random_reward.price
   end
+
+  it 'checks if the order is delivered' do
+    login_as(admin, scope: :admin)
+    create(:employee)
+    create(:order)
+    visit 'admins/employees/orders'
+    click_button 'Deliver'
+    page.driver.browser.switch_to.alert.accept
+    expect(page).to have_text 'Order was successfully delivered'
+  end
 end
