@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :order do
     employee
     reward
-    price { 0 }
+    price { 9 }
+    status { 0 }
   end
 end

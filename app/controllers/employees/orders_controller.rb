@@ -1,14 +1,15 @@
 module Employees
   class OrdersController < EmployeesController
     def index
-      if params[:status] == "delivered"
-        orders = Order.delivered
-      elsif params[:status] == "non_delivered"
-         orders = Order.non_delivered
-      else
-          orders = Order.all
-      end
-      render :index, locals: { orders: orders }
+      orders = case params[:status]
+               when 'delivered'
+                 Order.delivered
+               when 'non_delivered'
+                 Order.non_delivered
+               else
+                 Order.all
+               end
+      render :index, locals: { orders: }
     end
 
     def create
