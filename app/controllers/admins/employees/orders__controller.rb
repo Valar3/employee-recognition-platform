@@ -2,9 +2,7 @@ module Admins
   module Employees
     class OrdersController < AdminController
       def index
-        @orders = Order.all
-        @count = Order.group(:status).count
-        @orders = Order.order(updated_at: :asc)
+        @orders = Order.all.order(updated_at: :asc)
       end
 
       def update
