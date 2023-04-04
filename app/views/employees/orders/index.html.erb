@@ -23,7 +23,9 @@
     <% end %>
   </tbody>
 </table>
-<p><h6>Filtering options:</h6></p> <p> <%= link_to 'Delivered', employees_orders_path(status: 'delivered'), method: :get%> </p><%= link_to 'Not Delivered', employees_orders_path(status: 'non_delivered'), method: :get%></p>
-<p> <%= link_to 'All orders', employees_orders_path%></p>
-      <p><%=button_to 'Back to Kudos view', root_path, method: :get%></p>
+<p><h6>Filtering options:</h6></p>
+  <p> <%= link_to 'Delivered', employees_orders_path(status: 'delivered'), method: :get%>
+  </p><%= link_to 'Not Delivered', employees_orders_path(status: 'non_delivered'), method: :get%></p>
+  <p> <%= link_to 'All orders', employees_orders_path%></p>
+<p><%=button_to 'Back to Kudos view', root_path, method: :get%></p>
 
