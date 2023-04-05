@@ -305,7 +305,7 @@ DEPENDENCIES
   faker
   letter_opener
   listen (~> 3.3)
-  pg (~> 1.1)
+  pg
   pry
   pry-rails
   puma (~> 5.0)
