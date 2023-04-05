@@ -6,7 +6,8 @@
       <th>Description</th>
       <th>Time of aquisition</th>
       <th>Price at the time of aquisition</th>
-    </tr>
+      <th>Delivery status</th>
+     </tr>
   </thead>
 
   <tbody>
@@ -18,6 +19,7 @@
         <td><%= order.reward.description %></td>
         <td><%= order.created_at %></td>
         <td><%= order.price %></td>
+        <td><%= order.status %></td>
       </tr>
       <% end %>
     <% end %>

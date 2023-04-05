@@ -2,12 +2,13 @@ module Admins
   module Employees
     class OrdersController < AdminController
       def index
-        @orders = Order.all.order(updated_at: :asc)
+        @orders = Order.all.order(status: :asc)
       end
 
       def update
         @order = Order.find(params[:id])
         flash[:notice] = if @order.update(status: 1)
+                           OrderMailer.with(order: @order).confirmation_email.deliver_later
                            'Order was successfully delivered'
                          else
                            'Order delivery failed'
