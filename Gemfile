@@ -28,7 +28,7 @@ group :development, :test do
   gem 'byebug'
   gem 'byebug-dap', '~> 0.1.4'
   gem 'factory_bot_rails'
-  gem 'pg', '~> 0.2'
+  gem 'pg', '~> 0.11'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '1.25.1'
