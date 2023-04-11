@@ -1,10 +1,7 @@
 require "rails_helper"
 
 RSpec.describe OrderMailer, type: :mailer do
-  before do
-    email = OrderMailer.create_confirmation_email('admin@big_company.com', 'balonw@gmail.com', Time.now)
-    email.deliver_now
-  end
+    let(:mail) { OrderMailer.confirmation_email(@order) }
   it 'checks the subject' do
     expect(mail.subject).to eq('Your order has been delivered')
   end
