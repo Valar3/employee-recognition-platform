@@ -85,6 +85,6 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :domain => "employeerp.co.uk",
   :user_name => "valar@employeerp.co.uk",
-  :password => Rails.aplication.credentials.pw
+  :password => Rails.application.credentials.pw
 }
 end
