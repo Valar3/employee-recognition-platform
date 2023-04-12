@@ -103,10 +103,10 @@ Rails.application.configure do
   # class timestamps to determine how long to wait before reading from the
   # replica.
   ActionMailer::Base.smtp_settings = {
-    :port           => 587,
-    :address        => smtp.eu.mailgun.org,
-    :user_name      => valar@employeerp.co.uk,
-    :password       => Rails.aplication.credentials.pw,
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
     :domain         => 'erp-1.herokuapp.com',
     :authentication => :plain,
   }
