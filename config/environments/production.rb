@@ -97,7 +97,7 @@ Rails.application.configure do
   #
   # The `database_resolver` class is used by the middleware to determine which
   # database is appropriate to use based on the time delay.
-  config.action_mailer.default_url_options = { host: 'employeerp.co.uk' }
+  config.action_mailer.default_url_options = { host: 'erp-1.herokuapp.com' }
 
   # The `database_resolver_context` class is used by the middleware to set
   # timestamps for the last write to the primary. The resolver uses the context
