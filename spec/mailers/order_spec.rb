@@ -2,7 +2,12 @@ require "rails_helper"
 
 RSpec.describe OrderMailer, type: :mailer do
     let(:mail) { OrderMailer.confirmation_email(@order) }
-  it 'checks the subject' do
+  before do
+    login_as(admin, scope: :admin)
+  end
+  visit 
+
+    it 'checks the subject' do
     expect(mail.subject).to eq('Your order has been delivered')
   end
 
