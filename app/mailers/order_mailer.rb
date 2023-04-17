@@ -1,5 +1,4 @@
 class OrderMailer < ApplicationMailer
-  default from: 'valar@employeerp.co.uk'
 
   def confirmation_email
     @order = params[:order]
