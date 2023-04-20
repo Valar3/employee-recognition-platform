@@ -13,7 +13,7 @@ gem 'faker'
 gem 'pry'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
-
+gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -28,7 +28,7 @@ group :development, :test do
   gem 'byebug'
   gem 'byebug-dap', '~> 0.1.4'
   gem 'factory_bot_rails'
-  gem 'pg', '~> 1.1'
+
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '1.25.1'
