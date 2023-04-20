@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     resources :kudos, only: [:index, :destroy]
+    patch 'add_kudos_to_all/', to: 'employees#add_kudos_to_all'
+
     resources :employees, only: [:index, :edit, :update, :destroy] do
       resources :orders, only: [:index, :update]
+      #patch :add_kudos_to_all, on: :collection
     end
     namespace :employees do
       resources :orders, only: [:index, :update]

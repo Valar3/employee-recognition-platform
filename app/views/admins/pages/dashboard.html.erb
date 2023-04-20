@@ -27,6 +27,9 @@
       <li>
   <p> <%= link_to 'Deliveries', admins_employees_orders_path, method: :get %>(<%= Order.where(status:0).count%>)</p>
       </li>
+      <li>
+  <p> <%= link_to 'Add Kudos to all',  admins_add_kudos_to_all_path, method: :patch %></p>
+      </li>
     </ul>
     <%= yield %>
   </body>
