@@ -8,16 +8,21 @@ module Admins
       @employee = Employee.find(params[:id])
     end
 
+    def edit_add_kudos_to_all
+      @employee = Employee.all
+      render 'admins/employees/update_add_kudos_to_all'
+    end
 
-    def add_kudos_to_all
-      @employee = Employee.all.find_each do |employee|
-      if employee.update(employee_params_2)   && employee.number_of_available_kudos <= 20
-        flash[:notice] = 'Successfully updated the numer of kudos to all employees'
-       # redirect_to 'admins/employees'
+    def update_add_kudos_to_all
+      Employee.find_each do |employee|
+      if employee.update(add_kudo_to_all_params)
+        employee = Employee.find(add_kudo_to_all_params)
+        
+    #    redirect_to 'admins/employees'
       else
         flash[:notice] = 'The numer of kudos you want to add is too high'
       end
-        #render 'admins/employees/add_kudos_to_all'
+   #     render 'admins/employees/add_kudos_to_all'
     end
     end
 
@@ -47,8 +52,8 @@ module Admins
       params.require(:employee).permit(:email, :password, :number_of_available_kudos)
     end
 
-    def employee_params_2
-      params.fetch(:employee, {}).permit(:number_of_available_kudos)
+    def add_kudo_to_all_params
+      params.fetch(:employee, {} ).permit(:number_of_available_kudos)
     end
   end
 end

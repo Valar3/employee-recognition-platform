@@ -1,0 +1,12 @@
+<h1>Edit number of available kudos to all Employees</h1>
+
+<%= form_with url: 'mass_edit', method: :patch  do |f| %>
+
+  <p>
+    <%=f.label :number_of_available_kudos %><br/>
+    <%= f.number_field :number_of_available_kudos %>  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

@@ -11,7 +11,7 @@ module Admins
           OrderMailer.with(order: @order).confirmation_email.deliver_later
           flash[:notice] = 'Order was successfully delivered'
         else
-          'Order delivery failed'
+          flash[:notice] = 'Order delivery failed'
         end
         redirect_to admins_employees_orders_path
       end
