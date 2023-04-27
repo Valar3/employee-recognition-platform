@@ -14,16 +14,22 @@ module Admins
     end
 
     def update_add_kudos_to_all
-      Employee.find_each do |employee|
-      if employee.update(add_kudo_to_all_params)
-        employee = Employee.find(add_kudo_to_all_params)
-        
-    #    redirect_to 'admins/employees'
+      new_available_kudos = params[:number_of_available_kudos].to_i
+      if new_available_kudos < 21
+        Employee.transaction do
+          Employee.find_each do |employee|
+            employee.update(number_of_available_kudos: employee.number_of_available_kudos + new_available_kudos)
+          end
+          flash[:notice] = 'Successfully updated the number of kudos to all employees'
+          redirect_to admin_root_path
+
+        rescue ActiveRecord::RecordInvalid
+          flash[:notice] = 'Invalid number of kudos, must be between 1 and 20.'
+          render 'update_add_kudos_to_all'
+        end
       else
-        flash[:notice] = 'The numer of kudos you want to add is too high'
+        flash[:notice] = 'Invalid number of kudos, must be between 1 and 20.'
       end
-   #     render 'admins/employees/add_kudos_to_all'
-    end
     end
 
     def destroy
@@ -53,7 +59,7 @@ module Admins
     end
 
     def add_kudo_to_all_params
-      params.fetch(:employee, {} ).permit(:number_of_available_kudos)
+      params.fetch(:employee, {}).permit(:number_of_available_kudos)
     end
   end
 end
