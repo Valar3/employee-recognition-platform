@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
   def pundit_user
-    Employee.all
+    current_employee
   end
 
   private

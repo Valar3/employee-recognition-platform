@@ -16,10 +16,7 @@ module Employees
 
     def edit
       @kudo = Kudo.find(params[:id])
-      return if Time.zone.now - @kudo.created_at < 5.minutes
-
-      redirect_to root_path
-      flash[:notice] = 'Time for editing has passed'
+      authorize @kudo
     end
 
     def create
