@@ -12,6 +12,7 @@ gem 'devise'
 gem 'faker'
 gem 'pry'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+gem 'will_paginate', '~> 3.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server

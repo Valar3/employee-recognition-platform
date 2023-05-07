@@ -9,7 +9,7 @@
       <th>Delete Reward</th>
     </tr>
   </thead>
-
+<%= will_paginate rewards, :container => false %>
   <tbody>
     <% rewards.each do |reward| %>
       <tr>
