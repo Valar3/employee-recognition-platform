@@ -31,7 +31,7 @@
         <td><%= kudo.giver&.email %></td>
         <td><%= kudo.receiver&.email %></td>
         <td><%= kudo.company_value&.title%></td>
-        <% if employee_signed_in? && kudo.giver == current_employee%>
+        <% if employee_signed_in? && kudo.giver == current_employee &&  Time.now - kudo.created_at < 5.minutes%>
           <td><%=button_to 'Edit Kudo', edit_employees_kudo_path(kudo), method: :get %></td>
           <td><%=button_to 'Delete Kudo',   employees_kudo_path(kudo), method: :delete, data: {confirm: "Are you sure?"}%></td>
         <%end%>

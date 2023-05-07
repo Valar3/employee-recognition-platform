@@ -1,12 +1,12 @@
 <h1>Edit a Kudo</h1>
 
-<%= form_with(model: [:employees, kudo])do |f| %>
-  <%if kudo && if kudo.errors.any?  %>
+<%= form_with(model: [:employees, @kudo])do |f| %>
+  <%if @kudo && if @kudo.errors.any?  %>
     <div id="error_explanation">
-      <h2>Errors that prohibited this kudo from being saved:</h2>
+      <h2>Errors that prohibited this @kudo from being saved:</h2>
 
       <ul>
-        <% kudo.errors.each do |error| %>
+        <% @kudo.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
         <% end %>

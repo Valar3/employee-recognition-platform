@@ -15,7 +15,8 @@ module Employees
     end
 
     def edit
-      render :edit, locals: { kudo: Kudo.find(params[:id]) }
+      @kudo = Kudo.find(params[:id])
+      authorize @kudo
     end
 
     def create
@@ -38,16 +39,20 @@ module Employees
 
     def update
       kudo = Kudo.find(params[:id])
+      authorize kudo
       if kudo.update(kudo_params)
         flash[:notice] = 'Kudo was edited successfully'
         redirect_to root_path
-      else
+      elsif Time.zone.now - kudo.created_at > 5.minutes
+        flash[:notice] = 'The time for edition and deletion of Kudo has passed'
+        rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
         render :edit, locals: { kudo: }
       end
     end
 
     def destroy
       @kudo = Kudo.find(params[:id])
+      authorize @kudo
       Kudo.transaction do
         @kudo.destroy!
         @kudo.receiver.number_of_earned_points -= 10
@@ -55,10 +60,8 @@ module Employees
         flash[:notice] = 'Kudo was deleted successfully'
         redirect_to root_path
       end
-    rescue ActiveRecord::RecordInvalid
-      flash[:notice] = 'Kudo deletion failed'
-      redirect_to root_path
     end
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     private
 
