@@ -8,7 +8,7 @@
       <th>Buy Reward</th>
     </tr>
   </thead>
-
+    <%= will_paginate reward, :container => false %>
   <tbody>
     <% reward.each do |reward| %>
       <tr>
