@@ -3,5 +3,6 @@ class Reward < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
-  has_many :orders, dependent: :destroy, inverse_of: :reward
+  has_many :reward_categories
+  has_many :catergories, through: :reward_categories
 end
