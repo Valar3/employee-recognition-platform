@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
-  devise_for :employees, path: 'employees'
+  devise_for :employees, path: 'employees', controllers: { omniauth_callbacks: 'employees/omniauth_callbacks' }
   namespace :employees do
     resources :kudos
     resources :rewards, only: [:index, :show]
