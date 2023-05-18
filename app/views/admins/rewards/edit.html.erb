@@ -24,6 +24,10 @@
     <%= f.label :price %><br/>
     <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
   </p>
+   <p>
+    <%= f.label :category %><br/>
+   <%= f.collection_select(:category_ids, Category.all, :id, :title ) %>
+ </p>
   <p>
     <%= f.submit %>
   </p>

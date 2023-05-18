@@ -21,7 +21,7 @@ class Employee < ApplicationRecord
       #user.image = auth.info.image # assuming the user model has an image
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+       user.skip_confirmation!
     end
   end
 end
