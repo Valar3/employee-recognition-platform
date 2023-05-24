@@ -24,10 +24,9 @@
   </p>
   <p>
     <%= f.label :category %><br/>
-   <%= f.collection_select(:category_ids, Category.all, :id, :title ) %>
+   <%= f.collection_check_boxes(:reward, :category_ids, Category.all, :id, :title)  %>
  </p>
   <p>
     <%= f.submit %>
   </p>
-
 <% end %>
