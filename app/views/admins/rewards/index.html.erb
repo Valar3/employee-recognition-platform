@@ -17,7 +17,7 @@
         <td><%= reward.title %></td>
          <td><%= reward.description %></td>
           <td><%= reward.price %></td>
-          <td><%= reward.reward_category %></td>
+          <td><%= reward.reward_categories %></td>
         <td><%=button_to 'Edit', edit_admins_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Delete',admins_reward_path(reward), method: :delete, data: {confirm: "Are you sure?"}%></td>
       </tr>

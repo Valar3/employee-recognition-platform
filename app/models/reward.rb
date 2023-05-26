@@ -3,6 +3,7 @@ class Reward < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
-  has_one :reward_category
-  has_one :catergory, through: :reward_categories
+  has_many :reward_categories
+  has_many :categories, through: :reward_categories
+  accepts_nested_attributes_for :categories
 end
