@@ -10,12 +10,14 @@ module Admins
 
     def destroy
       @category = Category.find(params[:id])
-       if @category.destroy && @category.rewards == 0
+       Category.transaction do
+       @category.destroy! && @category.rewards = 0
+       end
         flash[:notice] = 'Category was deleted successfully'
-           else
-                    flash[:notice] ='Category deletion failed'
-                       end
-      redirect_to admins_categories_path
+        redirect_to admins_categories_path
+      rescue StandardError
+        flash[:notice] ='Category deletion failed. You can not delete a category attached to a reward'
+        redirect_to admins_categories_path
     end
 
     def update
@@ -45,7 +47,7 @@ module Admins
     private
 
     def category_params
-      params.require(:category).permit(:title, :category_id)
+      params.require(:category).permit(:title)
     end
   end
 end

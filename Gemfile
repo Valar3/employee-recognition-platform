@@ -35,7 +35,6 @@ group :development, :test do
 
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
-  gem 'rubocop', '1.25.1'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
   # Tests
@@ -59,3 +58,5 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'pundit', '~> 2.3'
+
+gem "rubocop", "~> 1.25"
