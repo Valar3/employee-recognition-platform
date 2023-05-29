@@ -11,8 +11,8 @@ gem 'bullet'
 gem 'devise'
 gem 'faker'
 gem 'omniauth-github'
-gem 'pry'
 gem 'omniauth-rails_csrf_protection'
+gem 'pry'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'will_paginate', '~> 3.3'
 # Use postgresql as the database for Active Record
@@ -59,4 +59,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'pundit', '~> 2.3'
 
-gem "rubocop", "~> 1.25"
+gem 'rubocop', '~> 1.25'
