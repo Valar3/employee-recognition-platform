@@ -1,0 +1,22 @@
+<h1>Categories listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Edit Category</th>
+      <th>Delete Category</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%=button_to 'Edit', edit_admins_category_path(category), method: :get %></td>
+        <td><%=button_to 'Delete',admins_category_path(category), method: :delete, data: {confirm: "Are you sure?"}%></td>
+    <% end %>
+  </tbody>
+</table>
+      <%=button_to "Create New Category", new_admins_category_path , method: :get%>
+      <%= button_to 'Back to admins panel', admin_root_path, method: :get%>
+

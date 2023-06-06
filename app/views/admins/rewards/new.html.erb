@@ -23,7 +23,10 @@
     <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
   </p>
   <p>
+    <%= f.label :categories %><br/>
+   <%= f.collection_check_boxes(:category_ids, Category.all, :id, :title)  %>
+ </p>
+  <p>
     <%= f.submit %>
   </p>
-
 <% end %>

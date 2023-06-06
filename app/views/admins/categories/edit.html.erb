@@ -1,0 +1,23 @@
+<h1>Edit a Category</h1>
+
+<%= form_with(model: [:admins, category]) do |f| %>
+  <%if category && if category.errors.any?  %>
+    <div id="error_explanation">
+      <h2>Errors that prohibited this Category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+        <% end %>
+
+      <%end%>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
