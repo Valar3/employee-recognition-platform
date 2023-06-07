@@ -4,14 +4,40 @@ module Admins
       render :index, locals: { categories: Category.all }
     end
 
+    def show
+      render :show, locals: { category: }
+    end
+
+    def new
+      render :new, locals: { category: Category.new }
+    end
+
     def edit
-      render :edit, locals: { category: Category.find(params[:id]) }
+      render :edit, locals: { category: }
+    end
+
+    def create
+      record = Category.new(category_params)
+
+      if record.save
+        redirect_to admins_categories_path(record), notice: 'Category was successfully created.'
+      else
+        render :new, locals: { category: record }
+      end
+    end
+
+    def update
+      if category.update(category_params)
+          flash[:notice]='Category was successfully updated.'
+        redirect_to admins_categories_path(category)
+        render :edit, locals: { category: }
+      end
     end
 
     def destroy
       @category = Category.find(params[:id])
       Category.transaction do
-        @category.destroy! && @category.rewards = 0
+        @category.destroy!  
       end
       flash[:notice] = 'Category was deleted successfully'
       redirect_to admins_categories_path
@@ -20,34 +46,15 @@ module Admins
       redirect_to admins_categories_path
     end
 
-    def update
-      category = Category.find(params[:id])
-      if category.update(category_params)
-        flash[:notice] = 'Category was edited successfully'
-        redirect_to admins_categories_path
-      else
-        render :edit, locals: { category: }
-      end
-    end
-
-    def new
-      render :new, locals: { category: Category.new }
-    end
-
-    def create
-      category = Category.new(category_params)
-      if category.save
-        flash[:notice] = 'Category was created successfully'
-        redirect_to admins_categories_path
-      else
-        render :new, locals: { category: }
-      end
-    end
-
     private
+
+    def category
+      @category ||= Category.find(params[:id])
+    end
 
     def category_params
       params.require(:category).permit(:title)
     end
   end
 end
+

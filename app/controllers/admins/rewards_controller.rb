@@ -1,7 +1,9 @@
 module Admins
   class RewardsController < AdminController
     def index
+     
       render :index, locals: { rewards: Reward.paginate(page: params[:page], per_page: 3) }
+
     end
 
     def edit
@@ -45,7 +47,7 @@ module Admins
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, category_ids: [])
+      params.require(:reward).permit(:title, :description, :price, :category_id)
     end
   end
 end

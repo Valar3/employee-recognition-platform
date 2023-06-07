@@ -6,6 +6,7 @@
       <th>Price</th>
       <th>Show Reward</th>
       <th>Buy Reward</th>
+      <th>Categories</th>
     </tr>
   </thead>
     <%= will_paginate reward, :container => false %>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= reward.title %></td>
           <td><%= reward.price %>$</td>
+          <td><%= reward.category.title %></td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Buy',  employees_orders_path(reward_id: reward.id), method: :post%></td>
       </tr>
