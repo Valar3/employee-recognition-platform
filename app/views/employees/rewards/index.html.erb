@@ -15,11 +15,19 @@
       <tr>
         <td><%= reward.title %></td>
           <td><%= reward.price %>$</td>
-          <td><%= reward.category.title %></td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Buy',  employees_orders_path(reward_id: reward.id), method: :post%></td>
+          <td><%= reward.category.title %></td>
       </tr>
+
     <% end %>
+
   </tbody>
 </table>
+<h3>Filter by categories</h3>
+<ul>
 
+<%Category.all.each do |category|%>
+<li><%= link_to category.title, employees_rewards_category_path(category)%></li>
+<%end%>
+</ul>
