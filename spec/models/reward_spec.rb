@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Reward, type: :model do
+  let(:reward) { create(:category) }
+
   before do
+    create(:category)
     create(:reward)
   end
 

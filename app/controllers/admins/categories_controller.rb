@@ -28,8 +28,10 @@ module Admins
 
     def update
       if category.update(category_params)
-          flash[:notice]='Category was successfully updated.'
+        flash[:notice] = 'Category was successfully updated.'
         redirect_to admins_categories_path(category)
+      else
+        flash[:notice] = 'Category update unsuccessfull'
         render :edit, locals: { category: }
       end
     end
@@ -37,7 +39,7 @@ module Admins
     def destroy
       @category = Category.find(params[:id])
       Category.transaction do
-        @category.destroy!  
+        @category.destroy!
       end
       flash[:notice] = 'Category was deleted successfully'
       redirect_to admins_categories_path
@@ -57,4 +59,3 @@ module Admins
     end
   end
 end
-

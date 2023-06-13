@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'It manages rewards', type: :system do
+  let!(:reward) { create(:reward) }
+
   before do
     admin = create(:admin)
     login_as(admin, scope: :admin)
@@ -15,7 +17,6 @@ RSpec.describe 'It manages rewards', type: :system do
   end
 
   it 'edits the title of reward' do
-    create(:reward)
     visit '/admins/rewards'
     click_button 'Edit'
     fill_in 'Title', with: 'A new car'
@@ -27,7 +28,6 @@ RSpec.describe 'It manages rewards', type: :system do
   end
 
   it 'deletes the reward' do
-    create(:reward)
     visit '/admins/rewards'
     click_button 'Delete'
     page.driver.browser.switch_to.alert.accept
@@ -40,8 +40,9 @@ RSpec.describe 'It manages rewards', type: :system do
     fill_in 'Title', with: 'Trampoline'
     fill_in 'Description', with: 'A super duper brand new trampoline'
     fill_in 'Price', with: rand(1..999)
+    page.select reward.category.title, from: 'reward_category_id'
     click_button 'Create Reward'
-    expect(page).to have_text 'Trampoline'
+    expect(page).to have_text 'trampoline'
     expect(page).to have_content 'Reward was created successfully'
   end
 end
