@@ -5,6 +5,8 @@
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Category</th>
+      <th>Reward image</th>
     </tr>
   </thead>
 
@@ -13,6 +15,8 @@
         <td><%= reward.title %></td>
         <td><%= reward.description %></td>
         <td><%= reward.price %></td>
+        <td><%= reward.category.title %></td>
+         <td><%= image_tag reward.image if reward.image.attached? %></td>
       </tr>
       <p>
         <%=button_to 'Back to reward list',  employees_rewards_path(reward), method: :get %>
