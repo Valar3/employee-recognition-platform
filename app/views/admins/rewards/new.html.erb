@@ -23,9 +23,13 @@
     <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
   </p>
   <p>
-<%= f.label 'Category' %>
+    <%= f.label :category %>
     <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
   <p>
+  <p><form enctype="multipart/form-data">
+    <%= f.label :image %>
+    <%= f.file_field :image %><br>
+   <p>
     <%= f.submit %>
   </p>
 <% end %>

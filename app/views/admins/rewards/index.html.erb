@@ -8,11 +8,12 @@
       <th>Category</th>
       <th>Edit Reward</th>
       <th>Delete Reward</th>
+      <th>Reward photo</th>
     </tr>
   </thead>
-<%= will_paginate rewards, :container => false %>
+<%= will_paginate @rewards, :container => false %>
   <tbody>
-    <% rewards.each do |reward| %>
+    <% @rewards.each do |reward| %>
       <tr>
         <td><%= reward.title %></td>
          <td><%= reward.description %></td>
@@ -20,6 +21,7 @@
           <td><%= reward.category.title%></td>
         <td><%=button_to 'Edit', edit_admins_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Delete',admins_reward_path(reward), method: :delete, data: {confirm: "Are you sure?"}%></td>
+         <td><img src=<%=(reward.image_url) if reward.image? %>></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,11 +4,6 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :employees, path: 'employees', controllers: { omniauth_callbacks: 'employees/omniauth_callbacks' }
   namespace :employees do
-    #get 'rewards/categories/:category_id', to: 'rewards/categories#show'
-    #resources :categories, only: [:index, :show] do
-     # resources :rewards, only: [:index, :show]
-    #end
-
     resources :rewards, only: [:index, :show]
     get 'rewards/categories/:id', to: 'categories#show', as: 'rewards_category'
     resources :kudos

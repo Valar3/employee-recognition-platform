@@ -27,7 +27,11 @@
    <p>
     <%= f.label 'Category' %>
     <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
-  <p>
+    <p>
+    <%= f.label :image %>
+    <%= f.file_field :image %><br>
+    </p>
+   <p>
     <%= f.submit %>
   </p>
 
