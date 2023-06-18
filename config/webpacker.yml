@@ -81,7 +81,7 @@ test:
 
 production:
   <<: *default
-  RAILS_ENV=environment production
+  RAILS_ENV=environment: production
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
 
