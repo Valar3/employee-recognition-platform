@@ -81,9 +81,7 @@ test:
 
 production:
   <<: *default
-  database: employee_recognition_production
-  username: employee_recognition
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  
   # Production depends on precompilation of packs prior to booting for performance.
   compile: true
 
