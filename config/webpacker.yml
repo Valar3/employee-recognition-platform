@@ -81,9 +81,11 @@ test:
 
 production:
   <<: *default
-  RAILS_ENV: production
+  database: employee_recognition_production
+  username: employee_recognition
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
+  compile: true
 
   # Extract and emit a css file
   extract_css: true
