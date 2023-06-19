@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-
+gem 'active_storage_validations'
 gem 'bullet'
 gem 'devise'
 gem 'faker'
@@ -60,3 +60,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'pundit', '~> 2.3'
 
 gem 'rubocop', '~> 1.25'
+
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
+gem "redis", "~> 5.0"

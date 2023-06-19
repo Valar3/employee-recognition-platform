@@ -26,6 +26,10 @@
 <%= f.label 'Category' %>
     <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
   <p>
+   <p>
+    <%= f.label :image %><br/>
+    <%= f.file_field :image %>
+  </p>
     <%= f.submit %>
   </p>
 <% end %>

@@ -1,7 +1,7 @@
 module Admins
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.paginate(page: params[:page], per_page: 3) }
+      render :index, locals: { rewards: Reward.paginate(page: params[:page], per_page: 10) }
     end
 
     def edit
@@ -34,7 +34,9 @@ module Admins
 
     def create
       reward = Reward.new(reward_params)
-      if reward.save
+      if reward.save!
+
+binding.pry
         flash[:notice] = 'Reward was created successfully'
         redirect_to admins_rewards_path
       else
@@ -45,7 +47,7 @@ module Admins
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :category_id)
+      params.require(:reward).permit(:title, :description, :price, :category_id, :image)
     end
   end
 end
