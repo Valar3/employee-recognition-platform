@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_26_065144) do
+ActiveRecord::Schema.define(version: 2023_06_07_113254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,21 +77,17 @@ ActiveRecord::Schema.define(version: 2023_05_26_065144) do
     t.index ["reward_id"], name: "index_orders_on_reward_id"
   end
 
-  create_table "reward_categories", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "reward_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "rewards", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
     t.decimal "price", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_rewards_on_category_id"
   end
 
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "rewards"
+  add_foreign_key "rewards", "categories"
 end
