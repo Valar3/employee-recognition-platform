@@ -37,3 +37,5 @@ yarn-debug.log*
 .yarn-integrity
 
 workshops_2023_basic_app/
+
+/config/credentials/production.key
