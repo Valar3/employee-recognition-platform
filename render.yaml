@@ -1,5 +1,5 @@
 databases:
-  - name: postgres
+ - name: postgres
   ipAllowList: []
 
 services:
