@@ -61,6 +61,6 @@ gem 'pundit', '~> 2.3'
 
 gem 'rubocop', '~> 1.25'
 
-gem "dockerfile-rails", ">= 1.4", :group => :development
+gem 'dockerfile-rails', '>= 1.4', group: :development
 
-gem "redis", "~> 5.0"
+gem 'redis', '~> 5.0'
