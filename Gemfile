@@ -64,3 +64,5 @@ gem 'rubocop', '~> 1.25'
 gem 'dockerfile-rails', '>= 1.4', group: :development
 
 gem 'redis', '~> 5.0'
+
+gem "cloudinary", "~> 1.26"
