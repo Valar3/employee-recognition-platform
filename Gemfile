@@ -13,7 +13,7 @@ gem 'faker'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'pry'
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+gem 'rails', '~> 7.0.5'
 gem 'will_paginate', '~> 3.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
@@ -23,7 +23,7 @@ gem 'simple_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '~> 5.4.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -61,6 +61,8 @@ gem 'pundit', '~> 2.3'
 
 gem 'rubocop', '~> 1.25'
 
-gem "dockerfile-rails", ">= 1.4", :group => :development
+gem 'dockerfile-rails', '>= 1.4', group: :development
 
-gem "redis", "~> 5.0"
+gem 'redis', '~> 5.0'
+
+gem "cloudinary", "~> 1.26"

@@ -35,8 +35,6 @@ module Admins
     def create
       reward = Reward.new(reward_params)
       if reward.save!
-
-binding.pry
         flash[:notice] = 'Reward was created successfully'
         redirect_to admins_rewards_path
       else
