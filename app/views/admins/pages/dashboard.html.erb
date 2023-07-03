@@ -28,6 +28,9 @@
   <p> <%= link_to 'Deliveries', admins_employees_orders_path, method: :get %>(<%= Order.where(status:0).count%>)</p>
       </li>
       <li>
+  <p> <%= link_to 'Download Orders as CSV file', admins_employees_orders_path(format: :csv)  %>
+      </li>
+      <li>
   <p> <%= link_to 'Add Kudos to all', admins_edit_add_kudos_to_all_path, method: :get %></p>
       </li>
          <li>

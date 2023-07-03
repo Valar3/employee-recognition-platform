@@ -3,6 +3,12 @@ module Admins
     class OrdersController < AdminController
       def index
         @orders = Order.includes([:employee]).all.order(status: :asc)
+        respond_to do |format|
+          format.html
+          format.csv do
+            send_data Order.to_csv, filename: Time.zone.today.to_s, content_type: 'text/csv'
+          end
+        end
       end
 
       def update
