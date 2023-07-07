@@ -67,4 +67,4 @@ gem 'redis', '~> 5.0'
 
 gem 'cloudinary', '~> 1.26'
 
-gem "exception_handler", "~> 0.8.0"
+gem 'exception_handler', '~> 0.8.0'
