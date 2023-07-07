@@ -41,18 +41,23 @@ module Admins
         render :new, locals: { reward: }
       end
     end
+
     def import
       return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
-      return redirect_to request.referer, notice: 'Only CSV files allowed' unless params[:file].content_type == 'text/csv'
+
+      unless params[:file].content_type == 'text/csv'
+        return redirect_to request.referer,
+                           notice: 'Only CSV files allowed'
+      end
+
       ImportCsvService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
     end
 
-     private
+    private
 
     def reward_params
       params.require(:reward).permit(:title, :description, :price, :category_id, :image)
     end
   end
 end
-
