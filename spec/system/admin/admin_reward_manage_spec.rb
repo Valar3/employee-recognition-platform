@@ -45,12 +45,4 @@ RSpec.describe 'It manages rewards', type: :system do
     expect(page).to have_text 'trampoline'
     expect(page).to have_content 'Reward was created successfully'
   end
-
-  it 'imports a csv file' do
-    create(:category)
-    visit '/admins/rewards/import'
-    attach_file('file', Rails.root.join('spec/fixtures/files/rewards.csv').to_s)
-    click_button 'Import'
-    expect(page).to have_content 'Import completed'
-  end
 end

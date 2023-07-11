@@ -1,8 +1,0 @@
-<h3>Import Rewards from a CSV file</h3>
-<%= form_tag import_admins_rewards_path, method: :post, multipart: true do %>
-  <%= file_field_tag :file, accept: ".csv" %>
-  <%= submit_tag 'Import' %>
-<% end %>
-
-<%= button_to 'Back to admins panel', admin_root_path, method: :get%>
-
