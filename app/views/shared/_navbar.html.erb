@@ -13,6 +13,9 @@
           <li class="nav-item"  allign=right>
             <p>Total points earned: <%=current_employee.number_of_earned_points %></p>
           </li>
+          <li class="nav-item"  allign=down>
+            <p><%= link_to 'Edit employee profile', edit_employee_registration_path(@employee) %></p>
+          </li>
           <li class="nav-item"  allign=right>
             <p>Current employee logged: <%=current_employee.email %></p>
           </li>

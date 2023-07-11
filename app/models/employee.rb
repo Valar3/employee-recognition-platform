@@ -11,6 +11,8 @@ class Employee < ApplicationRecord
   def password_required?
     false
   end
+  validates :name, presence: true
+  validates :surname, presence: true
   validates :password, presence: { on: :create, message: "can't be blank" }
 
   def self.from_omniauth(auth)

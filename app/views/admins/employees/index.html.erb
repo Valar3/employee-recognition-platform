@@ -2,6 +2,8 @@
 <table>
   <thead>
     <tr>
+      <th>Employee name</th>
+      <th>Employee surname</th>
       <th>Employee email</th>
       <th>No of avail. kudos</th>
       <th>Update employee profile</th>
@@ -13,6 +15,8 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.surname %></td>
         <td><%= employee.email %></td>
         <td><%= employee.number_of_available_kudos %></td>
       <td><%=link_to 'Update profile', edit_admins_employee_path(employee), method: :get %></td>

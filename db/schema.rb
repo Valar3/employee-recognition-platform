@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_215420) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_215420) do
     t.float "number_of_earned_points", default: 0.0
     t.string "provider"
     t.string "uid"
+    t.string "name", null: false
+    t.string "surname", null: false
   end
 
   create_table "kudos", force: :cascade do |t|
