@@ -28,12 +28,9 @@ Rails.application.routes.draw do
       resources :orders, only: [:index, :update]
     end
     resources :company_values
-    resources :rewards do
-      collection do
-        post :import
-        get '/import' =>'pages#import'
-      end
-    end
+    resources :rewards
+
+
   end
   get '/admin' => "admins/pages#dashboard", :as => :admin_root
   root 'employees/kudos#index'
