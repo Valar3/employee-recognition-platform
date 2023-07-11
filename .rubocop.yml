@@ -15,6 +15,7 @@ AllCops:
     - 'spec/vcr/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
+    - 'app/services/import_csv_service.rb'
 
 Layout/LineLength:
   Max: 120

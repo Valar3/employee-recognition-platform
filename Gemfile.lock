@@ -116,6 +116,10 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
+    exception_handler (0.8.0.2)
+      bundler
+      rails (>= 4.2.0)
+      responders
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -384,6 +388,7 @@ DEPENDENCIES
   cloudinary (~> 1.26)
   devise
   dockerfile-rails (>= 1.4)
+  exception_handler (~> 0.8.0)
   factory_bot_rails
   faker
   letter_opener
