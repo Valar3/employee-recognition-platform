@@ -1,0 +1,40 @@
+<h3>Choose a delivery method</h3>
+<%= form_with(model: [ :employees, reward], url: employees_rewards_order_path) do |f| %>
+  <% if reward.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reward.errors.count, 'error') %> prohibited this reward from being saved:</h2>
+
+      <ul>
+        <% reward.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :delivery_method %>
+    <%= f.select :delivery_method, Reward.delivery_methods.keys %>
+  </div>
+
+  <% if reward.post_delivery? %>
+    <div>
+      <%= f.label :street %>
+      <%= f.text_field :street %>
+    </div>
+
+    <div>
+      <%= f.label :postcode %>
+      <%= f.text_field :postcode %>
+    </div>
+
+    <div>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit 'Save Order' %>
+  </div>
+<% end %>

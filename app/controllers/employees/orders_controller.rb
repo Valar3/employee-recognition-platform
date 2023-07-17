@@ -11,6 +11,7 @@ module Employees
                end
       render :index, locals: { orders: }
     end
+    def delivery; end
 
     def create
       reward = Reward.find(params[:reward_id])
@@ -22,7 +23,7 @@ module Employees
         Employee.transaction do
           current_employee.save!
           flash[:notice] = 'Reward was successfully bought'
-          redirect_to employees_rewards_path
+          redirect_to employees_rewards_order_path(reward)
         end
       end
     rescue ActiveRecord::RecordInvalid

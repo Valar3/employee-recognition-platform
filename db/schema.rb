@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_104503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
     t.bigint "reward_id"
     t.decimal "price", precision: 8, scale: 2, null: false
     t.integer "status", default: 0
+    t.string "street"
+    t.string "postcode"
+    t.string "city"
     t.index ["employee_id"], name: "index_orders_on_employee_id"
     t.index ["reward_id"], name: "index_orders_on_reward_id"
   end
@@ -112,6 +115,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.integer "delivery_method", default: 0
+    t.string "street"
+    t.string "postcode"
+    t.string "city"
     t.index ["category_id"], name: "index_rewards_on_category_id"
     t.index ["title"], name: "index_rewards_on_title", unique: true
   end
