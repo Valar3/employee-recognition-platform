@@ -41,4 +41,20 @@ RSpec.describe 'It enables to manage employee accounts', type: :system do
     click_link 'Show list'
     expect(page).to have_text random_reward.title
   end
+
+  it 'checks if name is updated' do
+    visit '/admins/employees'
+    click_link 'Update profile'
+    fill_in 'Name', with: 'John'
+    click_button 'Update Employee'
+    expect(page).to have_text 'John'
+  end
+
+  it 'checks if surname is updated' do
+    visit '/admins/employees'
+    click_link 'Update profile'
+    fill_in 'Surname', with: 'Smith'
+    click_button 'Update Employee'
+    expect(page).to have_text 'Smith'
+  end
 end

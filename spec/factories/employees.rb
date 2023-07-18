@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :employee do
+    name { Faker::Name.first_name }
+    surname { Faker::Name.last_name }
     email { Faker::Internet.email }
     password { 'password' }
     number_of_available_kudos { 10 }
