@@ -17,24 +17,7 @@
     <%= f.select :delivery_method, Reward.delivery_methods.keys %>
   </div>
 
-  <% if reward.post_delivery? %>
-    <div>
-      <%= f.label :street %>
-      <%= f.text_field :street %>
-    </div>
-
-    <div>
-      <%= f.label :postcode %>
-      <%= f.text_field :postcode %>
-    </div>
-
-    <div>
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </div>
-  <% end %>
-
   <div>
-    <%= f.submit 'Save Order' %>
+    <%= f.submit 'Next step' %>
   </div>
 <% end %>

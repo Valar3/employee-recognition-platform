@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :kudos
     resources :orders, only: [:create, :index, :show]
     get 'rewards/order/:id', to: 'rewards#delivery', as: 'rewards_order'
+    patch 'rewards/order/:id', to: 'rewards#delivery_address'
+    get 'rewards/order/:id/address', to: 'rewards#delivery', as: 'rewards_order_address'
   end
 
   namespace :admins do
