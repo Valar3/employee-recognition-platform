@@ -8,6 +8,9 @@ class Employee < ApplicationRecord
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy,
                             inverse_of: :receiver
   has_many :orders, dependent: :destroy, inverse_of: :employee
+  has_many :rewards, dependent: :destroy
+  has_one :address, dependent: :destroy, inverse_of: :employee
+  accepts_nested_attributes_for :address, allow_destroy: true
   def password_required?
     false
   end

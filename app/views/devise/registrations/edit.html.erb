@@ -6,6 +6,9 @@
   <div class="form-inputs">
     <%= f.input :name, required: true, autofocus: true %>
     <%= f.input :surname, required: true %>
+       <%= f.input :address.city %>
+                <%= f.input :address.postcode %>
+                <%= f.input :address.street %>
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && @employee.pending_reconfirmation? %>

@@ -3,15 +3,14 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :employees, path: 'employees', controllers: { omniauth_callbacks: 'employees/omniauth_callbacks' }
-
+  patch 'employees/:id', to: 'employees#update', as: 'employees_update'
   namespace :employees do
     resources :rewards, only: [:index, :show]
     get 'rewards/categories/:id', to: 'categories#show', as: 'rewards_category'
     resources :kudos
     resources :orders, only: [:create, :index, :show]
     get 'rewards/order/:id', to: 'rewards#delivery', as: 'rewards_order'
-    patch 'rewards/order/:id', to: 'rewards#delivery_address'
-    get 'rewards/order/:id/address', to: 'rewards#delivery', as: 'rewards_order_address'
+    patch 'rewards/order/:id', to: 'rewards#delivery'
   end
 
   namespace :admins do
