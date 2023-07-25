@@ -3,62 +3,32 @@ module Employees
     def index
       render :index, locals: { reward: Reward.paginate(page: params[:page], per_page: 3) }
     end
-
-    def create
-      @reward = Reward.new(reward_params)
-      @reward.address.first.employee_id = current_employee.id
-      if @reward.save
+    def edit
+      render :edit, locals: { reward: Reward.find(params[:id]) }
+    end
+    def update
+      reward = Reward.find(params[:id])
+        if reward.update(reward_params)
+          if reward.post_delivery?
+        flash[:notice] = 'You have chosen Post delivery as your delivery method'
+        redirect_to new_employees_order_path(reward)
+        elsif reward.online?
+        flash[:notice] = 'You have chosen Online as your delivery method'
         redirect_to employees_rewards_path
-      else
-        render 'rewards/order'
-      end
-    end
-
-    def delivery
-      @employee = current_employee
-      @reward = Reward.find(params[:id])
-      binding.pry
-      
-      if @reward.update(reward_params)
-        if @reward.post_delivery?
-          @employee.build_address unless @employee.address.present?
-
         end
-        #redirect_to employees_update_path
       else
-        render 'employees/rewards/delivery'
+        flash[:alert] = 'Something went wrong'
+        render :edit, locals: { reward: reward }
+
       end
     end
 
-    def show
+      def show
       render :show, locals: { reward: Reward.find(params[:id]) }
     end
-
     private
-
     def reward_params
-      params.require(:reward).permit(
-        :title, :description, :price, :category_id, :image, :delivery_method,
-        address_attributes: [:street, :postcode, :city]
-      )
+      params.require(:reward).permit(:delivery_method, :title, :description, :price, :category_id, :image)
     end
-
-    def address_params
-      params.require(:address).permit(:street, :postcode, :city)
-    end
-        #redirect_to employees_update_path
-      #else
-      #  flash[:alert] = 'You do not have enough points'
-       # redirect_to employees_rewards_path
-      #end
-
-      #  @employee = current_employee
-     #   @employee.build_address unless @employee.address.present?    end
-
-
-
-
-
-
   end
 end

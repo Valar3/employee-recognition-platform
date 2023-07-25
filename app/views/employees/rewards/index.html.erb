@@ -17,7 +17,9 @@
         <td><%= reward.title %></td>
           <td><%= reward.price %>$</td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
-        <td><%=button_to 'Buy',  employees_orders_path(reward_id: reward.id), method: :post%></td>
+         <% if current_employee.number_of_earned_points >= reward.price%>
+        <td><%=button_to 'Buy',  edit_employees_reward_path(reward), method: :get%></td>
+        <%end%>
         <td><%= reward.category.title %></td>
          <td><%= image_tag reward.image if reward.image.attached? %></td>
      </tr>

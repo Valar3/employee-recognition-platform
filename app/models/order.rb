@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   belongs_to :reward
   validate :check_price
   enum status: { non_delivered: 0, delivered: 1 }
+  serialize :address_snapshot 
   def check_price
     errors.add :base, 'You do not have enough points' if employee.number_of_earned_points < reward.price
   end

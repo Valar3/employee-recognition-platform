@@ -28,10 +28,15 @@
     <%= f.label 'Category' %>
     <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
   <p>
+   <p>
+    <%= f.label :delivery_method %>
+    <%= f.collection_select :delivery_method, Reward.delivery_methods, :first, :first %> </p>
+  <p>
     <p>
     <%= f.label :image %><br/>
     <%= f.file_field :image %>
   </p>
+  <p>
     <%= f.submit %>
   </p>
 

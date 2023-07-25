@@ -1,0 +1,45 @@
+  <%= form_with(model: order_delivery, url: employees_order_path) do |f|%>
+  <% if order_delivery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order_delivery.errors.count, 'error') %> prohibited this order from being saved:</h2>
+      <ul>
+        <% order_delivery.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  Reward:
+    <div>
+    <%= reward.title %>
+  </div>
+  Reward description:
+  <div>
+    <%= reward.description %>
+  </div>
+  Reward price:
+      <div>
+      <%= reward.price %>
+      </div>
+      Delivery method:
+      <div>
+      <%= reward.delivery_method %>
+      </div>
+  <%if reward.post_delivery? %>
+    <%= f.fields_for :address, current_employee.address || current_employee.build_address do |address_fields| %>
+      <%= address_fields.label :street %>
+      <%= address_fields.text_field :street %>
+
+      <%= address_fields.label :postcode %>
+      <%= address_fields.text_field :postcode %>
+
+      <%= address_fields.label :city %>
+      <%= address_fields.text_field :city %>
+    <% end %>
+    <%= f.submit 'Create Order' %>
+  <% end %>
+  <% end %>
+  <%= button_to 'Back to Kudos view', root_path, method: :get%>
+
+
+
