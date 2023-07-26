@@ -20,7 +20,7 @@ def save
 
       end
 
-      Order.create!(reward: reward, employee: employee, address_snapshot: address)
+      Order.create!(reward: reward, employee: employee, address: address)
     end
 
     true
