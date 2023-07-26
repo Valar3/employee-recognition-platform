@@ -4,7 +4,7 @@ class CreateAddress < ActiveRecord::Migration[7.0]
       t.string :street
       t.string :postcode
       t.string :city
-      t.references :employee, foreign_key: true
+      t.references :employee, foreign_key: { to_table: :employees }
       t.datetime :last_used
       t.timestamps
     end

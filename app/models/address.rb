@@ -4,4 +4,7 @@ class Address < ApplicationRecord
   validates :postcode, presence: true
   validates :city, presence: true
 
+  def full_address
+    "#{street}, #{postcode} #{city}"
+  end
 end

@@ -11,7 +11,7 @@ module Employees
         if reward.update(reward_params)
           if reward.post_delivery?
         flash[:notice] = 'You have chosen Post delivery as your delivery method'
-        redirect_to new_employees_order_path(reward)
+        redirect_to new_with_reward_employees_orders_path(reward_id: reward.id)
         elsif reward.online?
         flash[:notice] = 'You have chosen Online as your delivery method'
         redirect_to employees_rewards_path

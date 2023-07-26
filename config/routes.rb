@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :rewards, only: [:index, :show, :edit, :update]
     get 'rewards/categories/:id', to: 'categories#show', as: 'rewards_category'
     resources :kudos
-    resources :orders, only: [:new, :create, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+    get 'new/:reward_id', to: 'orders#new', as: :new_with_reward
+      end
+    end
     end
 
   namespace :admins do
