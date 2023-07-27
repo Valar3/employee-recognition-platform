@@ -12,31 +12,43 @@ module Employees
       render :index, locals: { orders: }
     end
     def new
-      order_delivery = OrderDelivery.new
+      order = Order.new
       reward = Reward.find(params[:reward_id])
-      render :new, locals: { order_delivery: order_delivery, reward: reward, employee: current_employee }
+      render :new, locals: { order: order, reward: reward, employee: current_employee }
     end
 
     def create
-      order_delivery = OrderDelivery.new(order_delivery_params)
-      reward = Reward.find(order_delivery.reward_id)
-      order_delivery.employee = current_employee
-              if order_delivery.employee.number_of_earned_points < reward.price
-        redirect_to employees_rewards_path, alert: 'Not enough points'
-      elsif order_delivery.save
-            order_delivery.employee.decrement(:number_of_earned_points, reward.price).save
-        redirect_to employees_rewards_path, notice: 'Order was successfully created.'
-      else
-        render :new, locals: { order_delivery: order_delivery, reward: reward, employee: current_employee }
-      end
+    order = Order.new(order_params)
+    order.employee_id = current_employee.id
+    order.price = order.reward.price
+    if order.reward.post_delivery?
+      order.street = params[:order_street]
+      order.city = params[:order][:city]
+      order.postcode = params[:order][:postcode]
     end
+
+    Order.transaction do
+
+
+      if order.save
+        current_employee.update!(number_of_earned_points: current_employee.number_of_earned_points - order.reward.price)
+      end
+
+      flash[:notice] = 'Order was successfully created'
+      redirect_to employees_rewards_path
+    end
+
+  rescue ActiveRecord::RecordInvalid
+    flash[:alert] = 'Failed to create order'
+    render :new, locals: { order: order, reward: Reward.find(params[:order][:reward_id]), employee: current_employee }
+  end
     private
 
     def order
       @order ||= Order.find(params[:id])
     end
-    def order_delivery_params
-      params.require(:order_delivery).permit(:reward_id, :street, :city, :postcode, :address_id )
+    def order_params
+      params.require(:order).permit(:reward_id, :street, :city, :postcode )
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_102153) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_210455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,17 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_102153) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "postcode"
-    t.string "city"
-    t.bigint "employee_id"
-    t.datetime "last_used"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_addresses_on_employee_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -93,6 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_102153) do
     t.string "uid"
     t.string "name", null: false
     t.string "surname", null: false
+    t.string "street"
+    t.string "postcode"
+    t.string "city"
   end
 
   create_table "kudos", force: :cascade do |t|
@@ -131,7 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_102153) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "addresses", "employees"
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "rewards"
   add_foreign_key "rewards", "categories"
