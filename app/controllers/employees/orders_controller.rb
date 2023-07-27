@@ -18,37 +18,37 @@ module Employees
     end
 
     def create
-    order = Order.new(order_params)
-    order.employee_id = current_employee.id
-    order.price = order.reward.price
-    if order.reward.post_delivery?
-      order.street = params[:order_street]
-      order.city = params[:order][:city]
-      order.postcode = params[:order][:postcode]
-    end
+      order = current_employee.orders.build(order_params)
+      reward = Reward.find(order.reward_id)
+      order.price = order.reward.price
 
-    Order.transaction do
-
-
-      if order.save
-        current_employee.update!(number_of_earned_points: current_employee.number_of_earned_points - order.reward.price)
+      if reward.post_delivery?
+        current_employee.city = order.city
+        current_employee.postcode = order.postcode
+        current_employee.street = order.street
+        current_employee.save
       end
 
-      flash[:notice] = 'Order was successfully created'
+      Order.transaction do
+        order.save!
+        current_employee.number_of_earned_points -= reward.price
+        current_employee.save!
+      end
+
+      flash[:notice] = 'Reward was successfully bought'
+      redirect_to employees_rewards_path
+    rescue ActiveRecord::RecordInvalid
+      flash[:alert] = 'You do not have enough points'
       redirect_to employees_rewards_path
     end
 
-  rescue ActiveRecord::RecordInvalid
-    flash[:alert] = 'Failed to create order'
-    render :new, locals: { order: order, reward: Reward.find(params[:order][:reward_id]), employee: current_employee }
-  end
     private
-
     def order
       @order ||= Order.find(params[:id])
     end
+
     def order_params
-      params.require(:order).permit(:reward_id, :street, :city, :postcode )
+      params.require(:order).permit(:reward_id, :city, :postcode, :street)
     end
   end
 end

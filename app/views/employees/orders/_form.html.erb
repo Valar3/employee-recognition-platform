@@ -27,11 +27,11 @@
       </div>
   <%if reward.post_delivery? %>
       <%= f.label :street %>
-      <%= f.text_field :street, value:      order.street %>
+      <%= f.text_field :street, value: current_employee.street %>
       <%= f.label :city %>
-      <%= f.text_field :city, value: order.city %>
+      <%= f.text_field :city, value: current_employee.city %>
       <%= f.label :postcode %>
-      <%= f.text_field :postcode, value: order.postcode %>
+      <%= f.text_field :postcode, value: current_employee.postcode %>
     <% end %>
       <%= f.hidden_field :reward_id, value: reward.id %>
     <%= f.submit 'Create Order' %>
