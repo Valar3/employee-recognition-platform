@@ -11,10 +11,11 @@ module Employees
                end
       render :index, locals: { orders: }
     end
+
     def new
       order = Order.new
       reward = Reward.find(params[:reward_id])
-      render :new, locals: { order: order, reward: reward, employee: current_employee }
+      render :new, locals: { order:, reward:, employee: current_employee }
     end
 
     def create
@@ -37,12 +38,13 @@ module Employees
 
       flash[:notice] = 'Reward was successfully bought'
       redirect_to employees_rewards_path
-    rescue ActiveRecord::RecordInvalid
-      flash[:alert] = 'You do not have enough points'
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:alert] = e.message
       redirect_to employees_rewards_path
     end
 
     private
+
     def order
       @order ||= Order.find(params[:id])
     end

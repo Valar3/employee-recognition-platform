@@ -13,6 +13,13 @@ RSpec.describe 'Manage order object', type: :system do
     login_as(employee, scope: :employee)
     visit 'employees/rewards'
     click_button 'Buy'
+    page.select 'post_delivery', from: 'reward_delivery_method'
+    click_button 'Submit'
+    expect(page).to have_text 'You have chosen Post delivery as your delivery method'
+    fill_in 'order_city', with: 'London'
+    fill_in 'order_street', with: 'Baker Street'
+    fill_in 'order_postcode', with: '12345'
+    click_button 'Create Order'
     login_as(admin, scope: :admin)
     visit 'admins/rewards'
     click_button 'Edit'

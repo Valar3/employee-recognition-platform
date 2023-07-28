@@ -12,6 +12,9 @@ RSpec.describe 'Signing up process', type: :system do
     fill_in 'Email', with: 'john.doe@gmail.com'
     fill_in 'employee_password', with: 'password'
     fill_in 'employee_password_confirmation', with: 'password'
+    fill_in 'employee_city', with: 'London'
+    fill_in 'employee_street', with: 'Baker Street'
+    fill_in 'employee_postcode', with: '12345'
     click_button 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end

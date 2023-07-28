@@ -52,6 +52,8 @@ module Admins
 
       ImportCsvService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
+    rescue StandardError => e
+      redirect_to request.referer, notice: e.message
     end
 
     private

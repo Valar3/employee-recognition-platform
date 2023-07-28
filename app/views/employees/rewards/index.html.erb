@@ -8,6 +8,7 @@
       <th>Buy Reward</th>
       <th>Category</th>
       <th>Reward image</th>
+      <th>Delivery method</th>
     </tr>
   </thead>
     <%= will_paginate reward, :container => false %>
@@ -22,6 +23,7 @@
         <%end%>
         <td><%= reward.category.title %></td>
          <td><%= image_tag reward.image if reward.image.attached? %></td>
+         <td><%= reward.delivery_method %></td>             
      </tr>
 
     <% end %>

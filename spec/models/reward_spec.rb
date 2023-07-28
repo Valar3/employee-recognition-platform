@@ -14,4 +14,5 @@ RSpec.describe Reward, type: :model do
   it { is_expected.to validate_numericality_of(:price), message: 'is not a number' }
   it { is_expected.to validate_numericality_of(:price), greater_than_or_equal_to: 1, message: 'is a valid numer' }
   it { is_expected.to validate_numericality_of(:price), lesser_than: 1, message: 'is not a valid numer' }
+  it { is_expected.to validate_presence_of(:delivery_method) }
 end
