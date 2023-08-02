@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     namespace :employees do
       resources :orders, only: [:index, :update, :create, :show]
     end
-
+    resources :online_codes do
+      collection do
+        post :import_online_codes
+        get '/import_online_codes', to: 'rewards#import_online_codes'
+      end
+    end
     resources :company_values
     resources :rewards do
       collection do

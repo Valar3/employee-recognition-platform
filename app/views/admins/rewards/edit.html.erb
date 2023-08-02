@@ -1,44 +1,7 @@
 <h1>Edit a Reward</h1>
 
-<%= form_with(model: [:admins, reward]) do |f| %>
-  <%if reward && if reward.errors.any?  %>
-    <div id="error_explanation">
-      <h2>Errors that prohibited this Reward from being saved:</h2>
 
-      <ul>
-        <% reward.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-        <% end %>
+  <%= render 'form' reward: reward%>
 
-      <%end%>
-  <p>
-    <%= f.label :title %><br/>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br/>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :price %><br/>
-    <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
-  </p>
-   <p>
-    <%= f.label 'Category' %>
-    <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
-  <p>
-   <p>
-    <%= f.label :delivery_method %>
-    <%= f.collection_select :delivery_method, Reward.delivery_methods, :first, :first %> </p>
-  <p>
-    <p>
-    <%= f.label :image %><br/>
-    <%= f.file_field :image %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
 
-<% end %>
 <%= button_to 'Back to admins panel', admin_root_path, method: :get%>

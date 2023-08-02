@@ -1,7 +1,7 @@
 module Employees
   class RewardsController < EmployeesController
     def index
-      render :index, locals: { reward: Reward.paginate(page: params[:page], per_page: 3) }
+      render :index, locals: { reward: Reward.includes(%i[image_attachment  ]).paginate(page: params[:page], per_page: 3) }
     end
 
     def edit

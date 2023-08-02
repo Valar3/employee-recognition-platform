@@ -1,0 +1,21 @@
+<h1>Online codes listing page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Is used?</th>
+      <th>Associated reward</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% online_codes.each do |online_code| %>
+      <tr>
+        <td><%= online_code.code %></td>
+        <td><%=online_code.used %></td>
+        <td><%= online_code.reward.title %></td>
+    <% end %>
+  </tbody>
+</table>
+      <%= button_to 'Back to admins panel', admin_root_path, method: :get%>
+

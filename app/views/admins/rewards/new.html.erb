@@ -1,40 +1,6 @@
 <h1>Create a new Reward</h1>
 
-<% if reward.errors.any?%>
-    <h2>The following errors prevented the Reward from being saved</h2>
-    <ul>
-        <% reward.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
-<%= form_with(model: [:admins, reward]) do |f| %>
-
-  <p>
-    <%= f.label :title %><br/>
-    <%= f.text_field :title %>
+<%= render 'form', reward: reward %>
+    <p> <%= link_to 'Import Online Codes from a CSV file', import_online_codes_admins_online_codes_path, method: :get  %>
   </p>
-  <p>
-    <%= f.label :description %><br/>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :price %><br/>
-    <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
-  </p>
-  <p>
-<%= f.label 'Category' %>
-    <%= f.collection_select :category_id, Category.all, :id, :title %> </p>
-     <p>
-    <%= f.label :delivery_method %>
-    <%= f.collection_select :delivery_method, Reward.delivery_methods, :first, :first %> </p>
-  <p>
-  <p>
-   <p>
-    <%= f.label :image %><br/>
-    <%= f.file_field :image %>
-  </p>
-    <%= f.submit %>
-  </p>
-<% end %>
 <%= button_to 'Back to admins panel', admin_root_path, method: :get%>

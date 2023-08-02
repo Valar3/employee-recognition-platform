@@ -1,7 +1,7 @@
 module Admins
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.paginate(page: params[:page], per_page: 10) }
+      render :index, locals: { rewards: Reward.includes(%i[category image_attachment]).paginate(page: params[:page], per_page: 10) }
     end
 
     def edit
@@ -42,6 +42,8 @@ module Admins
       end
     end
 
+    def import_online_codes; end
+
     def import
       return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
 
@@ -53,7 +55,7 @@ module Admins
       ImportCsvService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
     rescue StandardError => e
-      redirect_to request.referer, notice: e.message
+
     end
 
     private
