@@ -8,14 +8,15 @@ class Employee < ApplicationRecord
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy,
                             inverse_of: :receiver
   has_many :orders, dependent: :destroy, inverse_of: :employee
-  has_many :addresses, dependent: :destroy
   def password_required?
     false
   end
   validates :name, presence: true
   validates :surname, presence: true
   validates :password, presence: { on: :create, message: "can't be blank" }
-
+  validates :street, presence: true
+  validates :postcode, presence: true
+  validates :city, presence: true
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |employee|
       employee.email = auth.info.email

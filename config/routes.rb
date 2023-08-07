@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :rewards do
       collection do
         post :import
-        get '/import', to: 'rewards#import'
+        get '/import', to: 'pages#import'
       end
     end
   end

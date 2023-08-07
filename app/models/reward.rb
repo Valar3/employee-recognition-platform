@@ -4,6 +4,7 @@ class Reward < ApplicationRecord
   validates :price, presence: true, on: :create
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :image, content_type: ['image/png', 'image/jpeg']
+  validates :delivery_method, presence: true
   has_many :orders, dependent: :destroy, inverse_of: :reward
   belongs_to :category
   has_one_attached :image

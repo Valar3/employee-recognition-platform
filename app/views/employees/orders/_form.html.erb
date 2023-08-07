@@ -1,9 +1,9 @@
-  <%= form_with(model: order_delivery, url: employees_orders_path) do |f|%>
-  <% if order_delivery.errors.any? %>
+  <%= form_with(model: order, url: employees_orders_path, action: :create) do |f|%>
+  <% if order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(order_delivery.errors.count, 'error') %> prohibited this order from being saved:</h2>
+      <h2><%= pluralize(order.errors.count, 'error') %> prohibited this order from being saved:</h2>
       <ul>
-        <% order_delivery.errors.full_messages.each do |message| %>
+        <% order.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -26,16 +26,12 @@
       <%= reward.delivery_method %>
       </div>
   <%if reward.post_delivery? %>
-    <% if employee.addresses.any? %>
-        <%= f.label :address_id, 'Delivery addresses' %>
-        <%= f.collection_select :address_id, employee.addresses, :id, :full_address, prompt: 'New Address...' %>
-    <% end %>
       <%= f.label :street %>
-      <%= f.text_field :street %>
+      <%= f.text_field :street, value: current_employee.street %>
       <%= f.label :city %>
-      <%= f.text_field :city %>
+      <%= f.text_field :city, value: current_employee.city %>
       <%= f.label :postcode %>
-      <%= f.text_field :postcode %>
+      <%= f.text_field :postcode, value: current_employee.postcode %>
     <% end %>
       <%= f.hidden_field :reward_id, value: reward.id %>
     <%= f.submit 'Create Order' %>
