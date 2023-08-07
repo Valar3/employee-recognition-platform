@@ -18,7 +18,7 @@ module Admins
                            notice: 'Only CSV files allowed'
       end
 
-      ImportOnlineCode.new.call(params[:file])
+      ImportOnlineCodeService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
     rescue StandardError => e
       redirect_to request.referer , notice: e.message

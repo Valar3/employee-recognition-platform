@@ -5,6 +5,8 @@
 
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
-
+import "@nathanvda/cocoon"
+require("jquery")
+require("@nathanvda/cocoon")
 Rails.start()
 ActiveStorage.start()

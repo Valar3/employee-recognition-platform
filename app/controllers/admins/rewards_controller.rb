@@ -29,7 +29,10 @@ module Admins
     end
 
     def new
-      render :new, locals: { reward: Reward.new }
+      reward= Reward.new
+      reward.online_codes.build
+      render :new, locals: { reward: reward }
+
     end
 
     def create
@@ -61,7 +64,7 @@ module Admins
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method)
+      params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method, :available_rewards, online_codes_attributes:[:code, :used, :id, :_destroy])
     end
   end
 end

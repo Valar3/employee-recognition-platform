@@ -9,6 +9,7 @@ ruby '3.2.1'
 gem 'active_storage_validations'
 gem 'bullet'
 gem 'devise'
+gem 'jquery-rails'
 gem 'faker'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
@@ -66,3 +67,5 @@ gem 'dockerfile-rails', '>= 1.4', group: :development
 gem 'redis', '~> 5.0'
 
 gem 'cloudinary', '~> 1.26'
+
+gem "cocoon", "~> 1.2"

@@ -9,10 +9,9 @@
   </div>
 <% end %>
 
-<%= form_with(model: [:admins, reward]) do |f| %>
+<%= simple_form_for([:admins, reward]) do |f| %>
   <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.input :title %><br>
   </p>
   <p>
     <%= f.label :description %><br>
@@ -23,13 +22,25 @@
     <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, unit: '$'), step: :any %>
   </p>
   <p>
-    <%= f.label 'Category' %><br>
+    <%= f.label :category_id %><br>
     <%= f.collection_select :category_id, Category.all, :id, :title %>
   </p>
   <p>
     <%= f.label :delivery_method %><br>
     <%= f.collection_select :delivery_method, Reward.delivery_methods.keys, :to_s, :humanize %>
   </p>
+  <p>
+  <%= f.label 'Available rewards/online codes' %><br>
+    <%= f.number_field :available_rewards %>
+  </p>
+  <%if reward.online_delivery? %>
+  <p><%= f.simple_fields_for :online_codes do |online_code| %>
+<%= render 'online_code_fields', f: online_code %>
+<% end %>
+<%= link_to_add_association 'Add online codes',f , :online_codes, count: reward.available_rewards %>
+
+<% end %>
+</p>
   <p>
     <%= f.label :image %><br>
     <%= f.file_field :image %>

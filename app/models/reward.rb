@@ -11,7 +11,7 @@ class Reward < ApplicationRecord
   belongs_to :category
   has_one_attached :image
   enum delivery_method: { online: 0, post_delivery: 1 }
-
+  accepts_nested_attributes_for :online_codes, allow_destroy: true
   def post_delivery?
     delivery_method == 'post_delivery'
   end
@@ -20,9 +20,9 @@ class Reward < ApplicationRecord
     delivery_method == 'online'
   end
 
-  def available_rewards
+  def available_rewards_index
     if online_delivery?
-      reward.online_code.where(used: false).count
+      online_codes.where(used: false).count
     else
       available_rewards
     end

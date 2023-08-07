@@ -1,6 +1,6 @@
 <h1>Create a new Reward</h1>
 
 <%= render 'form', reward: reward %>
-    <p> <%= link_to 'Import Online Codes from a CSV file', import_online_codes_admins_online_codes_path, method: :get  %>
+    <p> <%= button_to 'Import Online Codes from a CSV file', import_online_codes_admins_online_codes_path, method: :get  %>
   </p>
 <%= button_to 'Back to admins panel', admin_root_path, method: :get%>

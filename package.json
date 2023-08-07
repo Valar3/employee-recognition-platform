@@ -5,6 +5,12 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^20.4.8",
+    "cocoon": "github:nathanvda/cocoon#c24ba53",
+    "g": "^2.0.1",
+    "jquery": "^3.7.0",
+    "npm": "^9.8.1",
     "webpack-cli": "^4.10.0"
   },
   "version": "0.1.0",

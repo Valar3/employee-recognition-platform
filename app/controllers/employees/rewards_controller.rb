@@ -32,7 +32,7 @@ module Employees
     private
 
     def reward_params
-      params.require(:reward).permit(:delivery_method, :title, :description, :price, :category_id, :image)
+      params.require(:reward).permit(:delivery_method, :title, :description, :price, :category_id, :image, :available_rewards, online_codes_attributes:[:code, :used, :id, :_destroy ] )
     end
   end
 end
