@@ -41,8 +41,32 @@ RSpec.describe 'It manages rewards', type: :system do
     fill_in 'Description', with: 'A super duper brand new trampoline'
     fill_in 'Price', with: rand(1..999)
     page.select reward.category.title, from: 'reward_category_id'
+    page.select 'post_delivery', from: 'reward_delivery_method'
     click_button 'Create Reward'
     expect(page).to have_text 'trampoline'
     expect(page).to have_content 'Reward was created successfully'
+    expect(page).to have_content 'post_delivery'
+    expect(page).to have_content reward.category.title
+  end
+
+  it 'imports a csv file' do
+    create(:category)
+    visit '/admins/rewards/import'
+    attach_file('file', Rails.root.join('spec/fixtures/files/rewards.csv').to_s)
+    click_button 'Import'
+    expect(page).to have_content 'Import completed'
+  end
+
+  it 'checks if the delivery method is passed correctly' do
+    visit '/admins/rewards'
+    expect(page).to have_content 'online'
+  end
+
+  it 'checks if the admin can edit the delivery method' do
+    visit '/admins/rewards'
+    click_button 'Edit'
+    page.select 'post_delivery', from: 'reward_delivery_method'
+    click_button 'Update Reward'
+    expect(page).to have_content 'post_delivery'
   end
 end

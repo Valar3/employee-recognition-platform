@@ -9,6 +9,7 @@
       <th>Edit Reward</th>
       <th>Delete Reward</th>
       <th>Reward image</th>
+      <th>Delivery method</th>
     </tr>
   </thead>
 <%= will_paginate rewards, :container => false %>
@@ -22,6 +23,7 @@
         <td><%=button_to 'Edit', edit_admins_reward_path(reward), method: :get %></td>
         <td><%=button_to 'Delete',admins_reward_path(reward), method: :delete, data: {confirm: "Are you sure?"}%></td>
         <td><%= image_tag reward.image if reward.image.attached? %></td>
+         <td><%= reward.delivery_method %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,5 +4,6 @@ FactoryBot.define do
     description { Faker::Games::Witcher.quote }
     price { rand(1..100) }
     category
+    delivery_method { 0 }
   end
 end

@@ -42,10 +42,24 @@ module Admins
       end
     end
 
+    def import
+      return redirect_to request.referer, notice: 'No file added' if params[:file].nil?
+
+      unless params[:file].content_type == 'text/csv'
+        return redirect_to request.referer,
+                           notice: 'Only CSV files allowed'
+      end
+
+      ImportCsvService.new.call(params[:file])
+      redirect_to request.referer, notice: 'Import completed'
+    rescue StandardError => e
+      redirect_to request.referer, notice: e.message
+    end
+
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :category_id, :image)
+      params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method)
     end
   end
 end

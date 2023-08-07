@@ -1,0 +1,8 @@
+<h3>Choose a delivery method</h3>
+<%= form_with(model: [:employees, reward]) do |f| %>
+  <%= f.label :delivery_method %>
+  <%= f.select :delivery_method,  Reward.delivery_methods.keys %>
+  <%= f.submit 'Submit' %>
+<% end %>
+<%= button_to 'Back to Kudos view', root_path, method: :get%>
+

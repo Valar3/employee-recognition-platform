@@ -14,7 +14,9 @@ class Employee < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
   validates :password, presence: { on: :create, message: "can't be blank" }
-
+  validates :street, presence: true
+  validates :postcode, presence: true
+  validates :city, presence: true
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |employee|
       employee.email = auth.info.email

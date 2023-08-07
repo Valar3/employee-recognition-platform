@@ -1,6 +1,8 @@
 require 'csv'
 
 class Order < ApplicationRecord
+  attr_accessor :city, :postcode, :street
+
   belongs_to :employee
   belongs_to :reward
   validate :check_price

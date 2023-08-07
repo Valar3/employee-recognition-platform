@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_210455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
     t.string "uid"
     t.string "name", null: false
     t.string "surname", null: false
+    t.string "street"
+    t.string "postcode"
+    t.string "city"
   end
 
   create_table "kudos", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
     t.bigint "reward_id"
     t.decimal "price", precision: 8, scale: 2, null: false
     t.integer "status", default: 0
+    t.text "address_snapshot"
     t.index ["employee_id"], name: "index_orders_on_employee_id"
     t.index ["reward_id"], name: "index_orders_on_reward_id"
   end
@@ -113,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_214849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.integer "delivery_method", default: 0
     t.index ["category_id"], name: "index_rewards_on_category_id"
   end
 
