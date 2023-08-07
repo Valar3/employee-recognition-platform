@@ -9,9 +9,10 @@
   </div>
 <% end %>
 
-<%= simple_form_for([:admins, reward]) do |f| %>
+<%= form_with(model: [:admins, reward]) do |f| %>
   <p>
-    <%= f.input :title %><br>
+    <%= f.label :title %><br>
+    <%= f.text_area :title %>
   </p>
   <p>
     <%= f.label :description %><br>
@@ -34,7 +35,7 @@
     <%= f.number_field :available_rewards %>
   </p>
   <%if reward.online_delivery? %>
-  <p><%= f.simple_fields_for :online_codes do |online_code| %>
+  <p><%= f.fields_for :online_codes, reward.online_codes.build do |online_code| %>
 <%= render 'online_code_fields', f: online_code %>
 <% end %>
 <%= link_to_add_association 'Add online codes',f , :online_codes, count: reward.available_rewards %>

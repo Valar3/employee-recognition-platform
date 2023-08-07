@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resources :company_values
     resources :rewards do
       collection do
+        post 'generate_code', to: 'rewards#generate_code'
         post :import
         get '/import', to: 'pages#import'
       end

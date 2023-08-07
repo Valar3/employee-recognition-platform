@@ -69,3 +69,5 @@ gem 'redis', '~> 5.0'
 gem 'cloudinary', '~> 1.26'
 
 gem "cocoon", "~> 1.2"
+
+gem 'securerandom'

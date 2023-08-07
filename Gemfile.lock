@@ -319,6 +319,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    securerandom (0.2.2)
     selenium-webdriver (4.8.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -410,6 +411,7 @@ DEPENDENCIES
   rubocop-rails (= 2.13.2)
   rubocop-rspec (= 2.8.0)
   sass-rails (>= 6)
+  securerandom
   shoulda-matchers (~> 5.0)
   simple_form
   spring

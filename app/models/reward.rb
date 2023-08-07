@@ -11,7 +11,6 @@ class Reward < ApplicationRecord
   belongs_to :category
   has_one_attached :image
   enum delivery_method: { online: 0, post_delivery: 1 }
-  accepts_nested_attributes_for :online_codes, allow_destroy: true
   def post_delivery?
     delivery_method == 'post_delivery'
   end
