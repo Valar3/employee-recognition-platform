@@ -58,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_210455) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
   end
 
   create_table "company_values", force: :cascade do |t|
@@ -118,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_210455) do
     t.bigint "category_id"
     t.integer "delivery_method", default: 0
     t.index ["category_id"], name: "index_rewards_on_category_id"
-    t.index ["title"], name: "index_rewards_on_title", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
