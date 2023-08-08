@@ -34,19 +34,11 @@
   <%= f.label 'Available rewards/online codes' %><br>
     <%= f.number_field :available_rewards %>
   </p>
-  <%if reward.online_delivery? %>
-  <p><%= f.fields_for :online_codes, reward.online_codes.build do |online_code| %>
-<%= render 'online_code_fields', f: online_code %>
-<% end %>
-<%= link_to_add_association 'Add online codes',f , :online_codes, count: reward.available_rewards %>
-
-<% end %>
-</p>
   <p>
     <%= f.label :image %><br>
     <%= f.file_field :image %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Create Reward and associated online codes' %>
   </p>
 <% end %>

@@ -10,6 +10,7 @@ class ImportCsvService
             reward.price = row['Price']
             reward.category = Category.find_or_create_by!(title: row['Category'])
             reward.delivery_method = row['Delivery method']
+            reward.available_rewards = row['Available rewards']
             reward.save!
     end
   end

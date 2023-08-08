@@ -31,6 +31,7 @@ module Employees
       end
 
       Order.transaction do
+        order.reward.available_rewards.decrement(:available_rewards)
         order.save!
         current_employee.number_of_earned_points -= reward.price
         current_employee.save!

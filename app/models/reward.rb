@@ -15,6 +15,10 @@ class Reward < ApplicationRecord
     delivery_method == 'post_delivery'
   end
 
+  def build_online_codes(available_rewards)
+    available_rewards.times { online_codes.build }
+  end
+
   def online_delivery?
     delivery_method == 'online'
   end

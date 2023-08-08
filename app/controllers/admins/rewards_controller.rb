@@ -30,13 +30,14 @@ module Admins
 
     def new
       reward= Reward.new
-      reward.online_codes.build
       render :new, locals: { reward: reward }
 
     end
 
     def create
       reward = Reward.new(reward_params)
+      reward.build_online_codes(params[:reward][:available_rewards].to_i)
+
       if reward.save!
         flash[:notice] = 'Reward was created successfully'
         redirect_to admins_rewards_path
@@ -60,21 +61,12 @@ module Admins
     rescue StandardError => e
 
     end
-    def generate_code
-      online_codes = generate_online_codes(params[:reward][:available_rewards].to_i, 5)
-      respond_to do |format|
-        format.js
-      end
-    end
+
+
     private
 
     def reward_params
       params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method, :available_rewards, online_codes_attributes:[:code, :used, :id, :_destroy])
-    end
-
-    def generate_online_code(length)
-      characters = (0..9).to_a
-      code = Array.new(length) { characters.sample }.join
     end
   end
 end
