@@ -22,12 +22,23 @@ module Employees
       order = current_employee.orders.build(order_params)
       reward = Reward.find(order.reward_id)
       order.price = order.reward.price
-
-      if reward.post_delivery?
+    case reward.delivery_method
+      when reward.post_delivery?
         current_employee.city = order.city
         current_employee.postcode = order.postcode
         current_employee.street = order.street
         current_employee.save
+      when reward.online_delivery?
+        order.status = :delivered
+        if reward.available_online_codes.positive?
+          order = Order.new(reward: reward, employee: current_employee)
+
+          if order.save
+            online_code = reward.online_codes.where(used: false).first
+            online_code.update(used: true) if online_code
+            redirect_to order, notice: 'Order successfully placed.'
+          end
+        end
       end
 
       Order.transaction do

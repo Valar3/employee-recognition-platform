@@ -16,7 +16,7 @@ module Employees
           redirect_to new_with_reward_employees_orders_path(reward_id: reward.id)
         elsif reward.online?
           flash[:notice] = 'You have chosen Online as your delivery method'
-          redirect_to employees_rewards_path
+          redirect_to employees_order_online()
         end
       else
         flash[:alert] = 'Something went wrong'
