@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :rewards, only: [:index, :show, :edit, :update]
     get 'rewards/categories/:id', to: 'categories#show', as: 'rewards_category'
     resources :kudos
-    post 'order_online', to: 'order#create'
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         get 'new/:reward_id', to: 'orders#new', as: :new_with_reward
@@ -25,7 +24,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :update]
 
     namespace :employees do
-      resources :orders, only: [:index, :update, :create, :show] do
+      resources :orders, only: [:index, :update, :create, :show]
+    end
         resources :online_codes do
           collection do
             post :import_online_codes
@@ -40,8 +40,7 @@ Rails.application.routes.draw do
           end
         end
       end
-    end
-  end
+
 
   get '/admin', to: 'admins/pages#dashboard', as: :admin_root
   root 'employees/kudos#index'
