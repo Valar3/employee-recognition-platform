@@ -23,22 +23,32 @@ module Employees
     reward = Reward.find(reward_id)
     order = current_employee.orders.build(reward: reward)
     order.price = reward.price
-      service = OrderService.new(order, reward, current_employee, params[:order])
-      binding.pry
-      if service.process_order
+    order.city = params[:order][:city]
+    order.postcode = params[:order][:postcode]
+    order.street = params[:order][:street]
+
+binding.pry
+
+    service = OrderService.new(order, reward, current_employee, params[:order])
+
+    binding.pry
+
+    if service.process_order
         flash[:notice] = 'Order successfully processed'
         redirect_to employees_rewards_path
       else
         flash[:alert] = 'Order processing failed'
         redirect_to employees_rewards_path
       end
+
+      binding.pry
+
     rescue ActiveRecord::RecordInvalid => e
       flash[:alert] = e.message
       redirect_to employees_rewards_path
     end
 
-
-      private
+    private
 
       def order_params
         params.require(:order).permit(:reward_id, :city, :postcode, :street)

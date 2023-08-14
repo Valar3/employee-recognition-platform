@@ -14,18 +14,17 @@ class Employee < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
   validates :password, presence: { on: :create, message: "can't be blank" }
-  validates :street, presence: true, if: :post_delivery?
-  validates :postcode, presence: true, if: :post_delivery?
-  validates :city, presence: true, if: :post_delivery?
+ # validates :street, presence: true, on: :create, if: :post_delivery?
+ # validates :postcode, presence: true, on: :create, if: :post_delivery?
+  #validates :city, presence: true, on: :create, if: :post_delivery?
 
-
-  def pin_address
-    @current_employee.city = @order_params[:city]
-    @current_employee.postcode = @order_params[:postcode]
-    @current_employee.street = @order_params[:street]
-    @current_employee.saveZ
+  def post_delivery?
+    delivery_method == 'post_delivery'
   end
 
+  def online_delivery?
+    delivery_method == 'online'
+  end
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |employee|
