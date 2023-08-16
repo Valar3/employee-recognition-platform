@@ -11,13 +11,17 @@ class Reward < ApplicationRecord
   belongs_to :category
   has_one_attached :image
   enum delivery_method: { online: 0, post_delivery: 1 }
-      def post_delivery?
-        delivery_method == 'post_delivery'
-      end
+  def post_delivery?
+    delivery_method == 'post_delivery'
+  end
 
-      def online_delivery?
-        delivery_method == 'online'
-      end
+  def build_online_codes(available_rewards)
+    available_rewards.times { online_codes.build }
+  end
+
+  def online_delivery?
+    delivery_method == 'online'
+  end
 
   def available_rewards_index
     if online_delivery?

@@ -1,14 +1,16 @@
 module Admins
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.includes(%i[category image_attachment]).paginate(page: params[:page], per_page: 10) }
+      render :index,
+             locals: { rewards: Reward.includes(%i[category image_attachment]).paginate(page: params[:page],
+                                                                                        per_page: 10) }
     end
 
     def edit
       render :edit, locals: { reward: Reward.find(params[:id]) }
     end
 
-    def destroy
+        def destroy
       @reward = Reward.find(params[:id])
       flash[:notice] = if @reward.destroy
                          'Reward was deleted successfully'
@@ -29,9 +31,8 @@ module Admins
     end
 
     def new
-      reward= Reward.new
-      render :new, locals: { reward: reward }
-
+      reward = Reward.new
+      render :new, locals: { reward: }
     end
 
     def create
@@ -59,14 +60,14 @@ module Admins
       ImportCsvService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
     rescue StandardError => e
-
+      flash[:alert] = e.message
     end
-
 
     private
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method, :available_rewards, online_codes_attributes:[:code, :used, :id, :_destroy])
+      params.require(:reward).permit(:title, :description, :price, :category_id, :image, :delivery_method,
+                                     :available_rewards, online_codes_attributes: %i[code used id _destroy])
     end
   end
 end

@@ -9,8 +9,8 @@ ruby '3.2.1'
 gem 'active_storage_validations'
 gem 'bullet'
 gem 'devise'
-gem 'jquery-rails'
 gem 'faker'
+gem 'jquery-rails'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'pry'
@@ -68,6 +68,6 @@ gem 'redis', '~> 5.0'
 
 gem 'cloudinary', '~> 1.26'
 
-gem "cocoon", "~> 1.2"
+gem 'cocoon', '~> 1.2'
 
 gem 'securerandom'

@@ -2,12 +2,12 @@ module Admins
   class OnlineCodesController < AdminController
     def index
       online_codes = OnlineCode.all
-      render :index, locals: { online_codes: online_codes }
+      render :index, locals: { online_codes: }
     end
 
     def new
       online_code = OnlineCode.new
-      render :new, locals: { online_code: online_code }
+      render :new, locals: { online_code: }
     end
 
     def import_online_codes
@@ -21,7 +21,7 @@ module Admins
       ImportOnlineCodeService.new.call(params[:file])
       redirect_to request.referer, notice: 'Import completed'
     rescue StandardError => e
-      redirect_to request.referer , notice: e.message
+      redirect_to request.referer, notice: e.message
     end
 
     def create
@@ -29,7 +29,7 @@ module Admins
       if online_code.save
         redirect_to admins_online_codes_path, notice: 'Online code created'
       else
-        render :new, locals: { online_code: online_code }
+        render :new, locals: { online_code: }
         flash[:alert] = 'Online code not created'
       end
     end

@@ -18,31 +18,24 @@ module Employees
       render :new, locals: { order:, reward:, employee: current_employee }
     end
 
-      def create
-        reward_id = params[:order][:reward_id]
-    reward = Reward.find(reward_id)
-    order = current_employee.orders.build(reward: reward)
-    order.price = reward.price
-    order.city = params[:order][:city]
-    order.postcode = params[:order][:postcode]
-    order.street = params[:order][:street]
+    def create
+      reward = Reward.find(params[:order][:reward_id])
+      order = current_employee.orders.build(reward:)
+      order.price = reward.price
 
-binding.pry
+      service = OrderService.new(order, reward, current_employee, params[:order])
 
-    service = OrderService.new(order, reward, current_employee, params[:order])
-
-    binding.pry
-
-    if service.process_order
+      case service.process_order
+      when :success
         flash[:notice] = 'Order successfully processed'
         redirect_to employees_rewards_path
-      else
-        flash[:alert] = 'Order processing failed'
+      when :reward_not_available
+        flash[:alert] = 'Order processing failed: Reward not available'
+        redirect_to employees_rewards_path
+      when :invalid_delivery_method
+        flash[:alert] = 'Invalid delivery method'
         redirect_to employees_rewards_path
       end
-
-      binding.pry
-
     rescue ActiveRecord::RecordInvalid => e
       flash[:alert] = e.message
       redirect_to employees_rewards_path
@@ -50,8 +43,8 @@ binding.pry
 
     private
 
-      def order_params
-        params.require(:order).permit(:reward_id, :city, :postcode, :street)
-      end
+    def order_params
+      params.require(:order).permit(:reward_id, :city, :postcode, :street)
     end
+  end
 end

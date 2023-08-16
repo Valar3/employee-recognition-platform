@@ -5,7 +5,6 @@ class ImportOnlineCodeService
     opened_file = File.open(file)
     options = { headers: true, col_sep: ';' }
     CSV.foreach(opened_file, **options) do |row|
-      current_row = row
       online_code = OnlineCode.find_or_initialize_by(code: row['Code'])
       online_code.used = row['Used']
       reward_id = row['Reward']
@@ -14,7 +13,7 @@ class ImportOnlineCodeService
       if reward
         online_code.reward = reward
       else
-        puts "Warning: Reward with ID #{reward_id} not found in the database."
+        Rails.logger.debug { "Warning: Reward with ID #{reward_id} not found in the database." }
       end
 
       online_code.save!

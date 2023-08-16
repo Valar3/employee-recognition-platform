@@ -14,9 +14,9 @@ class Employee < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
   validates :password, presence: { on: :create, message: "can't be blank" }
- # validates :street, presence: true, on: :create, if: :post_delivery?
- # validates :postcode, presence: true, on: :create, if: :post_delivery?
-  #validates :city, presence: true, on: :create, if: :post_delivery?
+  # validates :street, presence: true, on: :create, if: :post_delivery?
+  # validates :postcode, presence: true, on: :create, if: :post_delivery?
+  # validates :city, presence: true, on: :create, if: :post_delivery?
 
   def post_delivery?
     delivery_method == 'post_delivery'
