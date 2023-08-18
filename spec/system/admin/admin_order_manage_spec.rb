@@ -10,12 +10,11 @@ RSpec.describe 'Manage order object', type: :system do
 
   it 'check if the order price remains unchanged when admins change the price' do
     random_reward = create(:reward)
+    random_reward.delivery_method = 'Post delivery'
+    random_reward.save
     login_as(employee, scope: :employee)
     visit 'employees/rewards'
-    click_button 'Buy'
-    page.select 'post_delivery', from: 'reward_delivery_method'
-    click_button 'Submit'
-    expect(page).to have_text 'You have chosen Post delivery as your delivery method'
+    click_button 'Buy with post'
     fill_in 'order_city', with: 'London'
     fill_in 'order_street', with: 'Baker Street'
     fill_in 'order_postcode', with: '12345'

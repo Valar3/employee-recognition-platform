@@ -1,4 +1,4 @@
-module Employees
+    module Employees
   class OrdersController < EmployeesController
     def index
       orders = case params[:status]
@@ -19,18 +19,15 @@ module Employees
     end
 
     def create
-      reward = Reward.find(params[:order][:reward_id])
-      order = current_employee.orders.build(reward:)
-      order.price = reward.price
-
+        reward = Reward.find(params[:order][:reward_id])
+        order = current_employee.orders.build(reward:)
+        order.price = reward.price
+        
       service = OrderService.new(order, reward, current_employee, params[:order])
 
       case service.process_order
       when :success
         flash[:notice] = 'Order successfully processed'
-        redirect_to employees_rewards_path
-      when :reward_not_available
-        flash[:alert] = 'Order processing failed: Reward not available'
         redirect_to employees_rewards_path
       when :invalid_delivery_method
         flash[:alert] = 'Invalid delivery method'

@@ -24,21 +24,19 @@ RSpec.describe 'Order management', type: :system do
   end
 
   it 'checks if you chose online delivery method there is an appropriate message' do
+    create(:reward)
     visit 'employees/rewards'
-    click_button 'Buy'
-    page.select 'online', from: 'reward_delivery_method'
-    click_button 'Submit'
-    expect(page).to have_text 'You have chosen Online as your delivery method'
+    click_button 'Buy online'
+    expect(page).to have_text 'Order processed successfully'
   end
 
   it 'checks the validation of the address data' do
+    random_reward = create(:reward)
+    random_reward.delivery_method = 'post_delivery'
+    random_reward.save
+    login_as(employee, scope: :employee)
     visit 'employees/rewards'
-    click_button 'Buy'
-    page.select 'post_delivery', from: 'reward_delivery_method'
-    click_button 'Submit'
-    fill_in 'order_city', with: ''
-    fill_in 'order_street', with: ''
-    fill_in 'order_postcode', with: ''
+    click_button 'Buy with post'
     click_button 'Create Order'
     expect(page).to have_text 'City can\'t be blank'
     expect(page).to have_text 'Street can\'t be blank'
@@ -46,10 +44,11 @@ RSpec.describe 'Order management', type: :system do
   end
 
   it 'checks if the fields are pre filled if there is an address set on an employee' do
+    create(:reward)
+    @reward.delivery_method = 'post_delivery'
+    @reward.save
     visit 'employees/rewards'
-    click_button 'Buy'
-    page.select 'post_delivery', from: 'reward_delivery_method'
-    click_button 'Submit'
+    click_button 'Buy with post'
     expect(page).to have_field('order_city', with: employee.city)
     expect(page).to have_field('order_street', with: employee.street)
     expect(page).to have_field('order_postcode', with: employee.postcode)

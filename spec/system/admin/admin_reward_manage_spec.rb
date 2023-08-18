@@ -41,11 +41,12 @@ RSpec.describe 'It manages rewards', type: :system do
     fill_in 'Description', with: 'A super duper brand new trampoline'
     fill_in 'Price', with: rand(1..999)
     page.select reward.category.title, from: 'reward_category_id'
-    page.select 'post_delivery', from: 'reward_delivery_method'
+    page.select 'Online', from: 'reward_delivery_method'
+    fill_in 'reward_available_rewards', with: '10'
     click_button 'Create Reward'
     expect(page).to have_text 'trampoline'
     expect(page).to have_content 'Reward was created successfully'
-    expect(page).to have_content 'post_delivery'
+    expect(page).to have_content 'online'
     expect(page).to have_content reward.category.title
   end
 
