@@ -20,17 +20,17 @@ class OrderService
   private
 
   def process_post_delivery
-      update_employee_address
-      place_order
-      :success
+    update_employee_address
+    place_order
+    :success
   end
 
   def process_online_delivery
-      @order.status = 'delivered'
-      place_order
-      OrderMailer.with(order: @order, reward: @reward).mail_with_code.deliver_now
-      update_online_code
-      :success
+    @order.status = 'delivered'
+    place_order
+    OrderMailer.with(order: @order, reward: @reward).mail_with_code.deliver_later
+    update_online_code
+    :success
   end
 
   def update_employee_address

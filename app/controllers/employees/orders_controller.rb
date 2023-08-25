@@ -1,4 +1,4 @@
-    module Employees
+module Employees
   class OrdersController < EmployeesController
     def index
       orders = case params[:status]
@@ -19,10 +19,10 @@
     end
 
     def create
-        reward = Reward.find(params[:order][:reward_id])
-        order = current_employee.orders.build(reward:)
-        order.price = reward.price
-        
+      reward = Reward.find(params[:order][:reward_id])
+      order = current_employee.orders.build(reward:)
+      order.price = reward.price
+
       service = OrderService.new(order, reward, current_employee, params[:order])
 
       case service.process_order
@@ -33,7 +33,7 @@
         flash[:alert] = 'Invalid delivery method'
         redirect_to employees_rewards_path
       end
-    rescue ActiveRecord::RecordInvalid => e
+    rescue StandardError => e
       flash[:alert] = e.message
       redirect_to employees_rewards_path
     end

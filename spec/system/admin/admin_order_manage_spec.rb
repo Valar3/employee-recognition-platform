@@ -10,8 +10,6 @@ RSpec.describe 'Manage order object', type: :system do
 
   it 'check if the order price remains unchanged when admins change the price' do
     random_reward = create(:reward)
-    random_reward.delivery_method = 'Post delivery'
-    random_reward.save
     login_as(employee, scope: :employee)
     visit 'employees/rewards'
     click_button 'Buy with post'
@@ -23,7 +21,7 @@ RSpec.describe 'Manage order object', type: :system do
     visit 'admins/rewards'
     click_button 'Edit'
     fill_in 'Price',	with: '59'
-    click_button 'Update Reward'
+    click_button 'Create Reward and associated online codes'
     login_as(employee, scope: :employee)
     visit root_path
     click_button 'Current Employee Reward List'

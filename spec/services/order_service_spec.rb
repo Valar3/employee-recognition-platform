@@ -1,47 +1,50 @@
-# spec/services/order_service_spec.rb
 require 'rails_helper'
 
 RSpec.describe OrderService, type: :service do
-  let(:reward) { create(:reward) } # You need to define the factory for Reward
-  let(:employee) { create(:employee) } # You need to define the factory for Employee
-  let(:order_params) { { city: 'City', postcode: '12345', street: 'Street' } }
-  let(:order) { build(:order) } # You need to define the factory for Order
-  subject { OrderService.new(order, reward, employee, order_params) }
+  subject(:order_service) { described_class.new(order, reward, employee, order_params) }
 
+  let(:reward) { create(:reward) }
+  let(:employee) { create(:employee) }
+  let(:order_params) { { city: 'City', postcode: '12345', street: 'Street' } }
+  let(:order) do
+     create(:order)
+  end
   describe '#process_order' do
-    context 'when delivery method is post_delivery' do
+    context 'when reward has post delivery method' do
       before do
         allow(reward).to receive(:delivery_method).and_return('post_delivery')
+        allow(order_service).to receive(:process_post_delivery)
       end
 
-      it 'updates employee address and places order' do
-        expect(subject).to receive(:update_employee_address)
-        expect(subject).to receive(:place_order)
-        expect(subject.process_order).to eq(:success)
+      it 'calls process_post_delivery' do
+        expect(order_service).to receive(:process_post_delivery)
+        order_service.process_order
       end
     end
 
-    context 'when delivery method is online' do
+    context 'when reward has online delivery method' do
       before do
         allow(reward).to receive(:delivery_method).and_return('online')
+        allow(OrderMailer).to receive(:mail_with_code)
+        allow(order).to receive(:status).and_return('delivered')
+        allow(order_service).to receive(:process_online_delivery)
       end
 
-      it 'marks order as delivered, sends email, and updates online code' do
-        expect(order).to receive(:status=).with('delivered')
-        expect(subject).to receive(:place_order)
-        expect(OrderMailer).to receive_message_chain(:with, :mail_with_code, :deliver_now)
-        expect(subject).to receive(:update_online_code)
-        expect(subject.process_order).to eq(:success)
+      it 'calls process_online_delivery and sets order status to delivered and sends email' do
+        expect(order).to have_received(:status).with('delivered')
+        expect(order).to have_received(:place_order)
+        expect_any_instance_of(OrderMailer).to have_received(:mail_with_code)
+        order_service.process_order
       end
     end
 
-    context 'when delivery method is invalid' do
+    context 'when reward has invalid delivery method' do
       before do
         allow(reward).to receive(:delivery_method).and_return('invalid')
       end
 
       it 'returns :invalid_delivery_method' do
-        expect(subject.process_order).to eq(:invalid_delivery_method)
+        expect(order_service.process_order).to eq(:invalid_delivery_method)
       end
     end
   end

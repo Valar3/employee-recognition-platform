@@ -1,5 +1,6 @@
 require 'csv'
 class ImportCsvService
+
   def call(file)
     opened_file = File.open(file)
     options = { headers: true, col_sep: ';' }

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :kudos
     resources :orders, only: [:create, :index, :show] do
       collection do
-        get 'new/reward_id', to:'orders#new', as: 'new_with_reward'
+        get 'new/:reward_id', to:'orders#new', as: 'new_with_reward'
       end
     end
   end

@@ -34,14 +34,12 @@ RSpec.describe 'It enables to manage employee accounts', type: :system do
   it 'checks if the rewads are listed in admin/employee panel' do
     login_as(employee, scope: :employee)
     random_reward = create(:reward)
-    random_reward.delivery_method = 'Post delivery'
-    random_reward.save
-      visit 'employees/rewards'
-      click_button 'Buy with post'
-      fill_in 'order_city', with: 'London'
-      fill_in 'order_street', with: 'Baker Street'
-      fill_in 'order_postcode', with: '12345'
-      click_button 'Create Order'
+    visit 'employees/rewards'
+    click_button 'Buy with post'
+    fill_in 'order_city', with: 'London'
+    fill_in 'order_street', with: 'Baker Street'
+    fill_in 'order_postcode', with: '12345'
+    click_button 'Create Order'
     login_as(admin, scope: :admin)
     visit 'admins/employees'
     click_link 'Show list'

@@ -1,4 +1,5 @@
 class Reward < ApplicationRecord
+  include WillPaginate::CollectionMethods
   validates :title, presence: true, on: :create
   validates :description, presence: true, on: :create
   validates :price, presence: true, on: :create

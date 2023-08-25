@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Kudo management', type: :system do
   let(:employee) { create(:employee) }
-  let!(:kudo) { create(:kudo, giver: employee) }
+  let!(:kudo) { create(:kudo, giver: employee, receiver: employee) }
 
   before do
     login_as(employee, scope: :employee)

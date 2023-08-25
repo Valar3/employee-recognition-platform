@@ -18,5 +18,8 @@ class ImportOnlineCodeService
 
       online_code.save!
     end
+  rescue StandardError => e
+    Rails.logger.error { "Error during online code import: #{e.message}" }
+    Rails.logger.error { e.backtrace.join("\n") }
   end
 end

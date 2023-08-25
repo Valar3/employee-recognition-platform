@@ -10,7 +10,7 @@ module Admins
       render :edit, locals: { reward: Reward.find(params[:id]) }
     end
 
-        def destroy
+    def destroy
       @reward = Reward.find(params[:id])
       flash[:notice] = if @reward.destroy
                          'Reward was deleted successfully'

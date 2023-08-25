@@ -6,7 +6,7 @@
   <body>
     <h1>Confirmation of online order delivery for <%= @order.employee.name %></h1>
     <p>
-        Your online code for <%= @order.reward.title %>  is <%=@order.reward.online_codes.first.code%>.<br>
+        Your online code for <%= @order.reward.title %>  is <%=@order.reward.online_codes.where(used:false).first.code %>.<br>
     </p>
     <p><h4>Have a great day!</h4></p>
   </body>
