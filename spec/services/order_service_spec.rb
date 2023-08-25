@@ -7,8 +7,9 @@ RSpec.describe OrderService, type: :service do
   let(:employee) { create(:employee) }
   let(:order_params) { { city: 'City', postcode: '12345', street: 'Street' } }
   let(:order) do
-     create(:order)
+    create(:order)
   end
+
   describe '#process_order' do
     context 'when reward has post delivery method' do
       before do

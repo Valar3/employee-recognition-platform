@@ -3,7 +3,8 @@ module Employees
     def index
       online_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
                                                                    '0')
-      post_rewards = Reward.includes(%i[image_attachment]).where(delivery_method: '1')
+      post_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
+        '1')
 
       all_rewards = online_rewards.or(post_rewards).paginate(page: params[:page], per_page: 8)
 
