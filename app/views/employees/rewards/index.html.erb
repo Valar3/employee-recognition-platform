@@ -22,8 +22,10 @@
          <% if current_employee.number_of_earned_points >= reward.price%>
          <% if reward.online_delivery? %>
           <td><%=button_to 'Buy online',  employees_orders_path(order: { reward_id: reward.id }), method: :post%></td>
-          <%elsif%>
+          <%elsif reward.post_delivery?%>
          <td> <%= button_to 'Buy with post', new_with_reward_employees_orders_path(reward_id: reward.id), method: :get%></td>
+          <%elsif reward.pick_up_delivery?%>
+          <td><%=button_to 'Buy with pick up delivery',  employees_orders_path(order: { reward_id: reward.id }), method: :post%></td>
           <% end %>
         <%end%>
         <td><%= reward.category.title %></td>

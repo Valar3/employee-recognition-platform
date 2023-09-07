@@ -11,7 +11,7 @@ class Reward < ApplicationRecord
   accepts_nested_attributes_for :online_codes, allow_destroy: true
   belongs_to :category
   has_one_attached :image
-  enum delivery_method: { online: 0, post_delivery: 1 }
+  enum delivery_method: { online: 0, post_delivery: 1, pick_up_delivery: 2 }
   def post_delivery?
     delivery_method == 'post_delivery'
   end
@@ -22,6 +22,10 @@ class Reward < ApplicationRecord
 
   def online_delivery?
     delivery_method == 'online'
+  end
+
+  def pick_up_delivery?
+    delivery_method == 'pick_up_delivery'
   end
 
   def available_rewards_index
