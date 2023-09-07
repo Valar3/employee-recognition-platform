@@ -1,28 +1,14 @@
 module Employees
   class RewardsController < EmployeesController
     def index
-      render :index, locals: { reward: Reward.paginate(page: params[:page], per_page: 3) }
-    end
+      online_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
+                                                                   '0')
+      post_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
+        '1')
 
-    def edit
-      render :edit, locals: { reward: Reward.find(params[:id]) }
-    end
+      all_rewards = online_rewards.or(post_rewards).paginate(page: params[:page], per_page: 8)
 
-    def update
-      reward = Reward.find(params[:id])
-      if reward.update(reward_params)
-        if reward.post_delivery?
-          flash[:notice] = 'You have chosen Post delivery as your delivery method'
-          redirect_to new_with_reward_employees_orders_path(reward_id: reward.id)
-        elsif reward.online?
-          flash[:notice] = 'You have chosen Online as your delivery method'
-          redirect_to employees_rewards_path
-        end
-      else
-        flash[:alert] = 'Something went wrong'
-        render :edit, locals: { reward: }
-
-      end
+      render :index, locals: { reward: all_rewards }
     end
 
     def show
@@ -32,7 +18,8 @@ module Employees
     private
 
     def reward_params
-      params.require(:reward).permit(:delivery_method, :title, :description, :price, :category_id, :image)
+      params.require(:reward).permit(:delivery_method, :title, :description, :price, :category_id, :image,
+                                     :available_rewards, online_codes_attributes: %i[code used id _destroy])
     end
   end
 end

@@ -35,10 +35,7 @@ RSpec.describe 'It enables to manage employee accounts', type: :system do
     login_as(employee, scope: :employee)
     random_reward = create(:reward)
     visit 'employees/rewards'
-    click_button 'Buy'
-    page.select 'post_delivery', from: 'reward_delivery_method'
-    click_button 'Submit'
-    expect(page).to have_text 'You have chosen Post delivery as your delivery method'
+    click_button 'Buy with post'
     fill_in 'order_city', with: 'London'
     fill_in 'order_street', with: 'Baker Street'
     fill_in 'order_postcode', with: '12345'

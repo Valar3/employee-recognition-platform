@@ -19,35 +19,26 @@ module Employees
     end
 
     def create
-      order = current_employee.orders.build(order_params)
-      reward = Reward.find(order.reward_id)
-      order.price = order.reward.price
+      reward = Reward.find(params[:order][:reward_id])
+      order = current_employee.orders.build(reward:)
+      order.price = reward.price
 
-      if reward.post_delivery?
-        current_employee.city = order.city
-        current_employee.postcode = order.postcode
-        current_employee.street = order.street
-        current_employee.save
+      service = OrderService.new(order, reward, current_employee, params[:order])
+
+      case service.process_order
+      when :success
+        flash[:notice] = 'Order successfully processed'
+        redirect_to employees_rewards_path
+      when :invalid_delivery_method
+        flash[:alert] = 'Invalid delivery method'
+        redirect_to employees_rewards_path
       end
-
-      Order.transaction do
-        order.save!
-        current_employee.number_of_earned_points -= reward.price
-        current_employee.save!
-      end
-
-      flash[:notice] = 'Reward was successfully bought'
-      redirect_to employees_rewards_path
-    rescue ActiveRecord::RecordInvalid => e
+    rescue StandardError => e
       flash[:alert] = e.message
       redirect_to employees_rewards_path
     end
 
     private
-
-    def order
-      @order ||= Order.find(params[:id])
-    end
 
     def order_params
       params.require(:order).permit(:reward_id, :city, :postcode, :street)

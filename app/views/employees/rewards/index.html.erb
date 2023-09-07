@@ -9,6 +9,7 @@
       <th>Category</th>
       <th>Reward image</th>
       <th>Delivery method</th>
+      <th>Number of available rewards</th>
     </tr>
   </thead>
     <%= will_paginate reward, :container => false %>
@@ -19,13 +20,17 @@
           <td><%= reward.price %>$</td>
         <td><%=button_to 'Show',  employees_reward_path(reward), method: :get %></td>
          <% if current_employee.number_of_earned_points >= reward.price%>
-        <td><%=button_to 'Buy',  edit_employees_reward_path(reward), method: :get%></td>
+         <% if reward.online_delivery? %>
+          <td><%=button_to 'Buy online',  employees_orders_path(order: { reward_id: reward.id }), method: :post%></td>
+          <%elsif%>
+         <td> <%= button_to 'Buy with post', new_with_reward_employees_orders_path(reward_id: reward.id), method: :get%></td>
+          <% end %>
         <%end%>
         <td><%= reward.category.title %></td>
          <td><%= image_tag reward.image if reward.image.attached? %></td>
-         <td><%= reward.delivery_method %></td>             
+         <td><%= reward.delivery_method %></td>
+         <td><%=reward.available_rewards_index%>
      </tr>
-
     <% end %>
 
   </tbody>

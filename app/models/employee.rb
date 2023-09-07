@@ -17,6 +17,15 @@ class Employee < ApplicationRecord
   validates :street, presence: true
   validates :postcode, presence: true
   validates :city, presence: true
+
+  def post_delivery?
+    reward.delivery_method == 'post_delivery'
+  end
+
+  def online_delivery?
+    reward.delivery_method == 'online'
+  end
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |employee|
       employee.email = auth.info.email
