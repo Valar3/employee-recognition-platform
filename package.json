@@ -7,6 +7,7 @@
     "@rails/webpacker": "5.4.3",
     "@types/minimatch": "^5.1.2",
     "@types/node": "^20.4.8",
+    "caniuse-lite": "^1.0.30001528",
     "cocoon": "github:nathanvda/cocoon#c24ba53",
     "g": "^2.0.1",
     "jquery": "^3.7.0",
