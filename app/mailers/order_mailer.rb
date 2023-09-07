@@ -8,4 +8,9 @@ class OrderMailer < ApplicationMailer
     @order = params[:order]
     mail(to: @order.employee.email, subject: 'Your online code is here')
   end
+
+  def mail_with_directions
+    @order = params[:order]
+    mail(to: @order.employee.email, subject: 'Your pick-up delivery directions')
+  end
 end

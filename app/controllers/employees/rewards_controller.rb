@@ -4,9 +4,11 @@ module Employees
       online_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
                                                                    '0')
       post_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?', 0,
-        '1')
+                                                                 '1')
+      pick_up_rewards = Reward.includes(%i[image_attachment]).where('available_rewards > ? AND delivery_method = ?',
+                                                                    0, '2')
 
-      all_rewards = online_rewards.or(post_rewards).paginate(page: params[:page], per_page: 8)
+      all_rewards = online_rewards.or(post_rewards).or(pick_up_rewards).paginate(page: params[:page], per_page: 8)
 
       render :index, locals: { reward: all_rewards }
     end

@@ -12,6 +12,8 @@ class OrderService
       process_post_delivery
     when 'online'
       process_online_delivery
+    when 'pick_up_delivery'
+      process_pick_up_delivery
     else
       :invalid_delivery_method
     end
@@ -30,6 +32,12 @@ class OrderService
     place_order
     OrderMailer.with(order: @order, reward: @reward).mail_with_code.deliver_later
     update_online_code
+    :success
+  end
+
+  def process_pick_up_delivery
+    place_order
+    OrderMailer.with(order: @order, reward: @reward).mail_with_directions.deliver_later
     :success
   end
 
